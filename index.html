@@ -5,17 +5,23 @@
   <title>Sec's Domain</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       background: black;
       color: white;
       font-family: 'Arial Black', sans-serif;
       font-size: 16px;
-      padding: 30px;
-      margin: 0;
+      white-space: pre-wrap;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #intro {
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
+      font-size: 22px;
     }
 
     .cursor {
@@ -30,44 +36,45 @@
     }
 
     .profile-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+      padding: 40px;
+      background-color: black;
       color: white;
+      font-family: 'Arial Black', sans-serif;
     }
 
     .profile-grid {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
     }
 
-    .pfp {
-      width: 170px;
-      height: 170px;
+    img.pfp {
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
+      border: 3px solid white;
       object-fit: cover;
-      border: 2px solid white;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     h1 {
       color: #ff3c3c;
       margin: 10px 0;
+      font-size: 28px;
     }
 
     hr {
       border: 0;
       border-top: 1px solid #888;
-      margin: 20px auto;
+      margin: 30px auto;
       width: 60%;
     }
 
     .socials {
       text-align: left;
-      margin-top: 10px;
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 18px;
     }
 
     .socials a {
@@ -76,73 +83,64 @@
     }
 
     .socials a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-
-    .socials div {
-      margin: 6px 0;
+      color: #fff;
     }
 
     .label {
       color: #ff5555;
     }
-
-    #press-start {
-      font-size: 22px;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
-  <div id="screen">
-    <div id="press-start">Welcome To Sec's Domain<br>Press Any Key To Continue</div>
+
+  <div id="intro">
+    Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
   </div>
 
   <script>
-    const startScreen = document.getElementById("screen");
-
     document.addEventListener("keydown", () => {
+      document.getElementById("intro").remove();
       startFakeTerminal();
     }, { once: true });
 
+    const lines = [
+      "root@govshield.cc",
+      "Please state the user you would like to add > sec",
+      "Please set the password for 'sec' > ********",
+      "Shall we create a home directory for 'sec'? > Yes",
+      "",
+      "Directory Created, time for your socials!",
+      "",
+      "Logging in...",
+      "Login successful.",
+    ];
+
+    let i = 0;
+    let j = 0;
+    const speed = 25;
+
     function startFakeTerminal() {
-      document.body.innerHTML = '<div id="terminal"></div><span class="cursor">█</span>';
-      const lines = [
-        "root@govshield.cc",
-        "Please state the user you would like to add > sec",
-        "Please set the password for 'sec' > ********",
-        "Shall we create a home directory for 'sec'? > Yes",
-        "",
-        "Directory Created, time for your socials!",
-        "",
-        "Login successful..."
-      ];
+      const terminal = document.createElement("div");
+      terminal.id = "terminal";
+      document.body.appendChild(terminal);
+      typeLine(terminal);
+    }
 
-      let i = 0;
-      let j = 0;
-      const speed = 30;
-      const terminal = document.getElementById("terminal");
-
-      function typeLine() {
-        if (i < lines.length) {
-          if (j < lines[i].length) {
-            terminal.innerHTML += lines[i].charAt(j);
-            j++;
-            setTimeout(typeLine, speed);
-          } else {
-            terminal.innerHTML += '\n';
-            i++;
-            j = 0;
-            setTimeout(typeLine, 250);
-          }
+    function typeLine(terminal) {
+      if (i < lines.length) {
+        if (j < lines[i].length) {
+          terminal.innerHTML += lines[i].charAt(j);
+          j++;
+          setTimeout(() => typeLine(terminal), speed);
         } else {
-          document.querySelector('.cursor').style.display = 'none';
-          setTimeout(showProfile, 800);
+          terminal.innerHTML += '\n';
+          i++;
+          j = 0;
+          setTimeout(() => typeLine(terminal), 250);
         }
+      } else {
+        setTimeout(showProfile, 1000);
       }
-
-      typeLine();
     }
 
     function showProfile() {
@@ -156,16 +154,16 @@
             <div class="socials">
               <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
               <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
-              <div><span class="label">📧 Email</span> – <span>gov.mounting947@8shield.net</span></div>
+              <div><span class="label">📧 Email</span> – <span>sec@govshield.cc</span></div>
             </div>
           </div>
           <audio autoplay loop>
             <source src="https://files.catbox.moe/jq8p59.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
           </audio>
         </div>
       `;
     }
   </script>
+
 </body>
 </html>
