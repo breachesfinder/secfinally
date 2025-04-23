@@ -111,7 +111,7 @@
 <body>
 
   <div id="intro">
-    Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
+    Welcome To Sec's Domain. Press Any Key Or Click Anywhere To Continue<span class="cursor">█</span>
   </div>
 
   <script>
@@ -123,8 +123,13 @@
       document.removeEventListener("click", startOnInput);
     }
 
-    document.addEventListener("keydown", startOnInput);
-    document.addEventListener("click", startOnInput);
+    // Listen for both keyboard and mouse click events
+    function setupEventListeners() {
+      document.addEventListener("keydown", startOnInput);
+      document.addEventListener("click", startOnInput);
+    }
+
+    setupEventListeners();  // Setting up both listeners when the page loads
 
     const lines = [
       "root@govshield.cc",
