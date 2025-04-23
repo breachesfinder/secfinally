@@ -17,6 +17,7 @@
       text-align: center;
     }
 
+    /* Intro Screen */
     #intro {
       height: 100vh;
       display: flex;
@@ -37,7 +38,25 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    /* Profile Container */
+    /* Terminal */
+    #terminal {
+      background: black;
+      color: white;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 16px;
+      white-space: pre-wrap;
+      overflow: hidden;
+      margin-top: 20px;
+      width: 90%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      border: 2px solid #00ff66;
+      display: none;
+    }
+
+    /* Profile */
     .profile-container {
       padding: 20px;
       background-color: #1e1e1e;
@@ -47,10 +66,9 @@
       max-width: 320px;
       margin: 20px auto;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-      display: none; /* Initially hidden */
+      display: none;
     }
 
-    /* Profile Grid */
     .profile-grid {
       display: grid;
       grid-template-columns: auto;
@@ -58,7 +76,6 @@
       gap: 12px;
     }
 
-    /* Profile Picture */
     img.pfp {
       width: 100px;
       height: 100px;
@@ -113,59 +130,57 @@
       color: #ff5555;
       font-weight: bold;
     }
-
-    /* Terminal Container */
-    #terminal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: left;
-      font-family: 'Arial Black', sans-serif;
-      white-space: pre-wrap;
-      color: white;
-      background-color: black;
-      padding: 30px;
-      border: 1px solid white;
-      width: 500px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-    }
   </style>
 </head>
 <body>
 
-  <!-- Intro Text Before Terminal -->
+  <!-- Intro Screen: "Press Any Key" -->
   <div id="intro">
-    Welcome To Sec's Domain. Press Any Key Or Click Anywhere To Continue<span class="cursor">█</span>
+    <div>
+      <p>Welcome to Sec's Domain</p>
+      <p>Press Any Key To Continue</p>
+      <div class="cursor">█</div>
+    </div>
+  </div>
+
+  <!-- Fake Terminal Screen -->
+  <div id="terminal"></div>
+
+  <!-- Profile Screen -->
+  <div class="profile-container">
+    <div class="profile-grid">
+      <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="Profile Picture" />
+      <h1>sec</h1>
+      <p>Yungest To Do It</p>
+      <hr />
+      <div class="socials">
+        <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
+        <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
+        <div><span class="label">📧 Email</span> – <span>sec@govshield.cc</span></div>
+      </div>
+    </div>
   </div>
 
   <script>
-    function startOnInput() {
-      const intro = document.getElementById("intro");
-      if (intro) intro.remove();
-      startFakeTerminal();
-      document.removeEventListener("keydown", startOnInput);
-      document.removeEventListener("click", startOnInput);
-    }
+    // Initial screen: "Press Any Key to Start"
+    document.addEventListener('keydown', startTerminal);
+    document.addEventListener('click', startTerminal);
 
-    function setupEventListeners() {
-      document.addEventListener("keydown", startOnInput);
-      document.addEventListener("click", startOnInput);
+    function startTerminal() {
+      document.getElementById("intro").style.display = 'none'; // Hide the intro screen
+      startTyping(); // Start the fake terminal typing
     }
-
-    setupEventListeners();
 
     const lines = [
-      "root@adduser.sh",
+      "root@adduser.shw govshield.cc",
       "Please state the user you would like to add > sec",
       "Please set the password for 'sec' > ********",
       "Shall we create a home directory for 'sec'? > Yes",
       "",
       "Directory Created, time for your socials!",
       "",
-      "Logging in...",
-      "Error: Crashed Code 404",
-      "You passed.",
+      "Login successful!",
+      ""
     ];
 
     let i = 0;
@@ -186,36 +201,21 @@
           setTimeout(typeLine, 300);
         }
       } else {
-        setTimeout(showProfile, 500);  // Delay before showing the profile
+        showProfile(); // Once terminal ends, show profile
       }
     }
 
-    function startFakeTerminal() {
-      document.body.innerHTML += `<div id="terminal"></div>`;
+    function startTyping() {
+      document.getElementById("terminal").style.display = 'block'; // Show terminal
       typeLine();
     }
 
+    // Display profile once terminal ends
     function showProfile() {
-      document.querySelector("#terminal").style.display = 'none';  // Hide terminal
-      document.querySelector(".profile-container").style.display = 'block';  // Show profile
+      document.getElementById("terminal").style.display = 'none'; // Hide terminal
+      document.querySelector('.profile-container').style.display = 'block'; // Show profile
     }
   </script>
-
-  <!-- Profile Section (Initially hidden) -->
-  <div class="profile-container">
-    <div class="profile-grid">
-      <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
-      <h1>sec</h1>
-      <p>Yungest To Do It</p>
-      <hr />
-
-      <div class="socials">
-        <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
-        <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
-        <div><span class="label">📧 Email</span> – <span>gov.mounting947@8shield.net</span></div>
-      </div>
-    </div>
-  </div>
 
 </body>
 </html>
