@@ -2,137 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sec's Domain</title>
   <style>
-    /* General Styles */
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #000;
-      color: #fff;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    h1, h2, p {
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
-    a {
-      color: #00f;
-      text-decoration: none;
-    }
-
-    /* Navbar */
-    header {
-      background: #333;
-      padding: 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    nav ul li {
-      display: inline-block;
-      margin-right: 20px;
-    }
-
-    /* Hero Section */
-    #hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      background-color: #000;
-    }
-
-    #hero video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    #hero h1 {
-      font-size: 3em;
-      text-shadow: 0 0 10px white;
-      position: relative;
-      z-index: 1;
-      padding-top: 30vh;
-    }
-
-    #hero p {
-      font-size: 1.2em;
-      margin-top: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-button {
-      background-color: #00f;
-      color: #fff;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 5px;
+      background: black;
+      color: white;
+      font-family: 'Arial Black', sans-serif;
       font-size: 16px;
-      display: inline-block;
-      margin-top: 30px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* About Section */
-    #about {
-      background: #111;
-      padding: 50px 20px;
-    }
-
-    /* Contact Section */
-    #contact {
-      background: #222;
-      padding: 50px 20px;
-    }
-
-    /* Footer */
-    footer {
-      background: #333;
-      padding: 10px;
+      overflow: hidden;
       text-align: center;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
     }
 
-    /* Socials Section */
-    .socials {
+    #intro {
+      height: 100vh;
       display: flex;
       justify-content: center;
-      margin-top: 20px;
+      align-items: center;
+      font-size: 22px;
+      color: white;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+
+    #terminal {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      color: white;
+      background-color: black;
+      padding: 30px;
+      border: 1px solid white;
+      width: 500px;
+      display: none;
+    }
+
+    .profile-container {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      text-align: center;
+      color: white;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+      }
+      100% {
+        text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white;
+      }
+    }
+
+    .profile-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #111;
+      padding: 20px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px white;
+    }
+
+    img.pfp {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid white;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 10px 0;
+      text-shadow: 0 0 15px white, 0 0 25px white;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #888;
+      margin: 20px auto;
+      width: 60%;
+    }
+
+    .socials {
+      font-size: 18px;
+      margin-top: 10px;
+      text-align: left;
     }
 
     .socials a {
-      margin: 0 15px;
-      font-size: 24px;
+      color: #7d7dff;
+      text-decoration: none;
     }
 
-    .socials i {
-      font-size: 36px;
+    .socials a:hover {
+      color: white;
     }
 
-    /* ❄️ Snowflake Cursor Effect */
+    /* Snowfall effect */
     .snowflake {
       position: absolute;
       width: 6px;
@@ -160,67 +147,113 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Hero Section with background video -->
-  <section id="hero">
-    <video autoplay muted loop>
-      <source src="https://files.catbox.moe/pfarh1.mp4" type="video/mp4" />
-    </video>
-    <h1>Welcome to Sec's Domain</h1>
-    <p>Your gateway to OSINT and CSINT knowledge.</p>
-    <a href="#contact" class="cta-button">Contact Us</a>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We specialize in OSINT and CSINT techniques. We aim to provide insightful and accurate information to the public through open-source intelligence.</p>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:sec@govshield.cc">sec@govshield.cc</a></p>
-    <p>Telegram: <a href="https://t.me/unloggable" target="_blank">@unloggable</a></p>
-  </section>
-
-  <!-- Social Links Section -->
-  <div class="socials">
-    <a href="https://t.me/unloggable" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-    <a href="https://doxbin.net/user/wpa" target="_blank"><i class="fas fa-file-alt"></i></a>
-    <a href="mailto:sec@govshield.cc"><i class="fas fa-envelope"></i></a>
+  <!-- Initial "Welcome" Screen -->
+  <div id="intro">
+    Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Sec's Domain</p>
-  </footer>
+  <div id="terminal"></div>
 
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Profile section -->
+  <div class="profile-container" id="profile">
+    <div class="profile-grid">
+      <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
+      <h1>sec</h1>
+      <p>Yungest To Do It</p>
+      <hr />
+      <div class="socials">
+        <div><strong>📡 Telegram</strong> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
+        <div><strong>📄 Doxbin</strong> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
+        <div><strong>📧 Email</strong> – sec@govshield.cc</div>
+      </div>
+    </div>
+    <audio id="profile-audio" autoplay loop>
+      <source src="https://files.catbox.moe/xaxmfx.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
-  <!-- ❄️ Snow Cursor Effect Script -->
   <script>
-    document.addEventListener("mousemove", function(e) {
-      const flake = document.createElement("div");
-      flake.className = "snowflake";
-      flake.style.left = `${e.pageX}px`;
-      flake.style.top = `${e.pageY}px`;
-      document.body.appendChild(flake);
-      setTimeout(() => {
-        flake.remove();
-      }, 1000);
+    const lines = [
+      "root@adduser.sh",
+      "Please state the user you would like to add > sec",
+      "Please set the password for 'sec' > ********",
+      "Shall we create a home directory for 'sec'? > Yes",
+      "",
+      "Directory Created, time for your socials!",
+      "",
+      "Logging in...",
+      "Login successful.",
+    ];
+
+    let i = 0, j = 0;
+    const speed = 25;
+    const terminal = document.getElementById("terminal");
+    const profile = document.getElementById("profile");
+    const profileAudio = document.getElementById("profile-audio");
+
+    function startOnInput() {
+      document.getElementById("intro").remove();
+      terminal.style.display = "block";
+      typeLine();
+      document.removeEventListener("keydown", startOnInput);
+      document.removeEventListener("click", startOnInput);
+    }
+
+    document.addEventListener("keydown", startOnInput);
+    document.addEventListener("click", startOnInput);
+
+    function typeLine() {
+      if (i < lines.length) {
+        if (j < lines[i].length) {
+          terminal.innerHTML += lines[i].charAt(j);
+          j++;
+          setTimeout(typeLine, speed);
+        } else {
+          terminal.innerHTML += '\n';
+          i++;
+          j = 0;
+          setTimeout(typeLine, 250);
+        }
+      } else {
+        setTimeout(() => {
+          terminal.style.display = "none";
+          profile.style.display = "flex";
+          profileAudio.play();
+        }, 1000);
+      }
+    }
+
+    // Snowfall activates when profile becomes visible
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.target.style.display === "flex" ||
+          window.getComputedStyle(mutation.target).display === "flex"
+        ) {
+          enableSnowfall();
+          observer.disconnect();
+        }
+      });
     });
+
+    observer.observe(profile, {
+      attributes: true,
+      attributeFilter: ["style"],
+    });
+
+    function enableSnowfall() {
+      document.addEventListener("mousemove", (e) => {
+        const flake = document.createElement("div");
+        flake.className = "snowflake";
+        flake.style.left = `${e.pageX}px`;
+        flake.style.top = `${e.pageY}px`;
+        document.body.appendChild(flake);
+        setTimeout(() => {
+          flake.remove();
+        }, 1000);
+      });
+    }
   </script>
+
 </body>
 </html>
