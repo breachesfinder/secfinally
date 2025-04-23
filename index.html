@@ -36,6 +36,7 @@
       50.01%, 100% { opacity: 0; }
     }
 
+    
     .profile-container {
       padding: 20px;
       background-color: #1e1e1e;
@@ -47,14 +48,15 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     }
 
+    
     .profile-grid {
       display: grid;
       grid-template-columns: auto;
-      align-items: center;
-      justify-content: center;
+      justify-items: center;
       gap: 15px;
     }
 
+    
     img.pfp {
       width: 120px;
       height: 120px;
@@ -110,13 +112,14 @@
       font-weight: bold;
     }
 
+    /* Terminal Container */
     #terminal {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: left;
-      font-family: 'Arial Black', sans-serif; /* Same font as the rest of the page */
+      font-family: 'Arial Black', sans-serif; 
       white-space: pre-wrap;
       color: white;
       background-color: black;
@@ -130,8 +133,9 @@
 </head>
 <body>
 
+ 
   <div id="intro">
-    Welcome To Sec's Domain. Press Any Key Or Click Anywhere To Continue<span class="cursor">█</span>
+    Welcome To Sec's Domain Press Any Key To Continue<span class="cursor">█</span>
   </div>
 
   <script>
@@ -152,9 +156,9 @@
 
     const lines = [
       "root@adduser.sh",
-      "Please state the user you would like to add > sec",
-      "Please set the password for 'sec' > ********",
-      "Shall we create a home directory for 'sec'? > Yes",
+      "Please state the user you would like to add --> sec",
+      "Please set the password for 'sec' --> ********",
+      "Shall we create a home directory for 'sec'? --> Yes",
       "",
       "Directory Created, time for your socials!",
       "",
@@ -189,6 +193,22 @@
       typeLine();
     }
   </script>
+
+  
+  <div class="profile-container">
+    <div class="profile-grid">
+      <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
+      <h1>sec</h1>
+      <p>Yungest To Do It</p>
+      <hr />
+
+      <div class="socials">
+        <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
+        <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
+        <div><span class="label">📧 Email</span> – <span>gov.mounting947@8shield.net</span></div>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
