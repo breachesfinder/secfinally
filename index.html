@@ -6,7 +6,7 @@
   <style>
     body {
       background: black;
-      color: white; 
+      color: white;
       font-family: 'Arial Black', Arial, sans-serif;
       font-size: 16px;
       padding: 30px;
@@ -17,6 +17,12 @@
       align-items: center;
       height: 100vh;
       margin: 0;
+    }
+
+    #start-screen {
+      text-align: center;
+      font-size: 24px;
+      cursor: pointer;
     }
 
     .cursor {
@@ -30,11 +36,10 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    /* Profile Grid Style */
     .profile-container {
       text-align: center;
       color: white;
-      padding-top: 80px; 
+      padding-top: 80px;
     }
 
     .profile-grid {
@@ -46,23 +51,23 @@
     }
 
     .pfp {
-      width: 200px; 
-      height: 200px; 
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 30px; 
+      margin-bottom: 30px;
       border: 2px solid #fff;
     }
 
     h1 {
       color: #ff3c3c;
-      margin: 10px 0; 
-      font-size: 36px; 
+      margin: 10px 0;
+      font-size: 36px;
     }
 
     p {
-      font-size: 20px; 
-      margin-bottom: 20px; 
+      font-size: 20px;
+      margin-bottom: 20px;
     }
 
     hr {
@@ -99,24 +104,31 @@
   </style>
 </head>
 <body>
-  <div id="terminal"></div><span class="cursor">█</span>
+  <div id="start-screen">Press any key to start</div>
 
   <script>
     const lines = [
-      "root@adduser.sh govshield.cc",
-      "Please state the user you would like to add --> sec",
-      "Please set the password for 'sec' --> ********",
-      "Shall we create a home directory for 'sec'? --> Yes",
+      "root@adduser.shw govshield.cc",
+      "Please state the user you would like to add > sec",
+      "Please set the password for 'sec' > ********",
+      "Shall we create a home directory for 'sec'? > Yes",
       "",
       "Directory Created, time for your socials!",
       "",
       "Login Successful...",
     ];
 
+    const terminalHTML = `<div id="terminal"></div><span class="cursor">█</span>`;
     let i = 0;
     let j = 0;
-    const speed = 20; 
-    const terminal = document.getElementById("terminal");
+    const speed = 20;
+    let terminal;
+
+    function startTyping() {
+      document.body.innerHTML = terminalHTML;
+      terminal = document.getElementById("terminal");
+      typeLine();
+    }
 
     function typeLine() {
       if (i < lines.length) {
@@ -128,26 +140,24 @@
           terminal.innerHTML += '\n';
           i++;
           j = 0;
-          setTimeout(typeLine, 200); 
+          setTimeout(typeLine, 200);
         }
       } else {
         document.querySelector('.cursor').style.display = 'none';
-        setTimeout(showProfile, 500);  
+        setTimeout(showProfile, 500);
       }
     }
-
-    typeLine();
 
     function showProfile() {
       document.body.innerHTML = `
         <div class="profile-container">
           <div class="profile-grid">
-            <img class="pfp" src="https://files.catbox.moe/nqawso.jpg" alt="pfp" />
+            <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
             <h1>sec</h1>
             <p>Yungest To Do It</p>
             <hr />
             <div class="socials">
-              <div><span class="label">📡 Telegram</span> – <a href="https://t.me/unloggable" target="_blank" rel="noopener">unloggable</a></div>
+              <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
               <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
               <div><span class="label">📧 Email</span> – <span>gov.mounting947@8shield.net</span></div>
             </div>
@@ -155,6 +165,20 @@
         </div>
       `;
     }
+
+    // Trigger terminal on any key or mouse click
+    function init() {
+      document.addEventListener('keydown', startTypingOnce);
+      document.addEventListener('click', startTypingOnce);
+    }
+
+    function startTypingOnce() {
+      document.removeEventListener('keydown', startTypingOnce);
+      document.removeEventListener('click', startTypingOnce);
+      startTyping();
+    }
+
+    init();
   </script>
 </body>
 </html>
