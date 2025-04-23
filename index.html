@@ -109,7 +109,7 @@
 
     let i = 0;
     let j = 0;
-    const speed = 35;
+    const speed = 20; // Increased the speed of terminal text
     const terminal = document.getElementById("terminal");
 
     function typeLine() {
@@ -122,7 +122,7 @@
           terminal.innerHTML += '\n';
           i++;
           j = 0;
-          setTimeout(typeLine, 300);
+          setTimeout(typeLine, 200); // Slight delay before starting next line
         }
       } else {
         document.querySelector('.cursor').style.display = 'none';
