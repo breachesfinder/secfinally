@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sec's Domain</title>
   <style>
     body {
@@ -17,7 +16,6 @@
       text-align: center;
     }
 
-    /* Intro Screen */
     #intro {
       height: 100vh;
       display: flex;
@@ -38,86 +36,53 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    /* Terminal */
-    #terminal {
-      background: black;
-      color: white;
-      font-family: 'Arial Black', sans-serif;
-      font-size: 16px;
-      white-space: pre-wrap;
-      overflow: hidden;
-      margin-top: 20px;
-      width: 90%;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 20px;
-      border: 2px solid #00ff66;
-      display: none;
-    }
-
-    /* Profile */
+    /* Profile Box Styles */
     .profile-container {
-      padding: 20px;
-      background-color: #1e1e1e;
+      padding: 40px;
+      background-color: black;
       color: white;
       font-family: 'Arial Black', sans-serif;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Glowing effect */
       border-radius: 10px;
-      max-width: 320px;
-      margin: 20px auto;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      margin-top: 20px;
       display: none;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-      border: 2px solid white;
     }
 
     .profile-grid {
-      display: grid;
-      grid-template-columns: auto;
-      justify-items: center;
-      gap: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     img.pfp {
-      width: 120px;
-      height: 120px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       border: 3px solid white;
       object-fit: cover;
-      margin-bottom: 10px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+      margin-bottom: 20px;
     }
 
     h1 {
-      color: #ff3c3c;
+      color: white;
       margin: 10px 0;
-      font-size: 24px;
-      text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px #ff3c3c;
-    }
-
-    p {
-      font-size: 16px;
-      margin: 8px 0;
-      color: #bbb;
+      font-size: 28px;
+      text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing text effect */
     }
 
     hr {
       border: 0;
       border-top: 1px solid #888;
-      margin: 15px auto;
+      margin: 30px auto;
       width: 60%;
     }
 
     .socials {
       text-align: left;
       display: inline-block;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    .socials div {
-      margin: 8px 0;
+      margin-top: 20px;
+      font-size: 18px;
     }
 
     .socials a {
@@ -127,72 +92,74 @@
 
     .socials a:hover {
       color: #fff;
-      text-decoration: underline;
     }
 
     .label {
       color: #ff5555;
-      font-weight: bold;
     }
 
+    #terminal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      color: white;
+      background-color: black;
+      padding: 30px;
+      border: 1px solid white;
+      width: 500px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Intro Screen: "Press Any Key" -->
   <div id="intro">
-    <div>
-      <p>Welcome to Sec's Domain</p>
-      <p>Press Any Key To Continue</p>
-      <div class="cursor">█</div>
-    </div>
-  </div>
-
-  <!-- Fake Terminal Screen -->
-  <div id="terminal"></div>
-
-  <!-- Profile Screen -->
-  <div class="profile-container">
-    <div class="profile-grid">
-      <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="Profile Picture" />
-      <h1>sec</h1>
-      <p>Yungest To Do It</p>
-      <hr />
-      <div class="socials">
-        <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
-        <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
-        <div><span class="label">📧 Email</span> – <span>sec@govshield.cc</span></div>
-      </div>
-    </div>
+    Welcome To Sec's Domain. Press Any Key Or Click Anywhere To Continue<span class="cursor">█</span>
   </div>
 
   <script>
-    // Initial screen: "Press Any Key to Start"
-    document.addEventListener('keydown', startTerminal);
-    document.addEventListener('click', startTerminal);
-
-    function startTerminal() {
-      document.getElementById("intro").style.display = 'none'; // Hide the intro screen
-      startTyping(); // Start the fake terminal typing
+    function startOnInput() {
+      const intro = document.getElementById("intro");
+      if (intro) intro.remove();
+      startFakeTerminal();
+      document.removeEventListener("keydown", startOnInput);
+      document.removeEventListener("click", startOnInput);
     }
 
+    // Listen for both keyboard and mouse click events
+    function setupEventListeners() {
+      document.addEventListener("keydown", startOnInput);
+      document.addEventListener("click", startOnInput);
+    }
+
+    setupEventListeners();  // Setting up both listeners when the page loads
+
     const lines = [
-      "root@adduser.shw govshield.cc",
+      "root@govshield.cc",
       "Please state the user you would like to add > sec",
       "Please set the password for 'sec' > ********",
       "Shall we create a home directory for 'sec'? > Yes",
       "",
       "Directory Created, time for your socials!",
-      "Error: Crashed Code 404",
       "",
-      "Login successful!",
-      ""
+      "Logging in...",
+      "Login successful.",
     ];
 
     let i = 0;
     let j = 0;
-    const speed = 35;
-    const terminal = document.getElementById("terminal");
+    const speed = 25;
+    let terminal;
+
+    function startFakeTerminal() {
+      terminal = document.createElement("div");
+      terminal.id = "terminal";
+      document.body.appendChild(terminal);
+      typeLine();
+    }
 
     function typeLine() {
       if (i < lines.length) {
@@ -204,22 +171,32 @@
           terminal.innerHTML += '\n';
           i++;
           j = 0;
-          setTimeout(typeLine, 300);
+          setTimeout(typeLine, 250);
         }
       } else {
-        showProfile(); // Once terminal ends, show profile
+        setTimeout(showProfile, 1000);
       }
     }
 
-    function startTyping() {
-      document.getElementById("terminal").style.display = 'block'; // Show terminal
-      typeLine();
-    }
-
-    // Display profile once terminal ends
     function showProfile() {
-      document.getElementById("terminal").style.display = 'none'; // Hide terminal
-      document.querySelector('.profile-container').style.display = 'block'; // Show profile
+      document.body.innerHTML = `
+        <div class="profile-container">
+          <div class="profile-grid">
+            <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
+            <h1>sec</h1>
+            <p>Yungest To Do It</p>
+            <hr />
+            <div class="socials">
+              <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
+              <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
+              <div><span class="label">📧 Email</span> – <span>sec@govshield.cc</span></div>
+            </div>
+          </div>
+          <audio autoplay loop>
+            <source src="https://files.catbox.moe/jq8p59.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+      `;
     }
   </script>
 
