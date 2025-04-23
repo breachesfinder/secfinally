@@ -12,6 +12,11 @@
       padding: 30px;
       white-space: pre-wrap;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
 
     .cursor {
@@ -29,7 +34,15 @@
     .profile-container {
       text-align: center;
       color: white;
-      padding-top: 50px; /* Raised the profile */
+      padding-top: 50px;
+    }
+
+    .profile-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     .pfp {
@@ -122,14 +135,16 @@
     function showProfile() {
       document.body.innerHTML = `
         <div class="profile-container">
-          <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
-          <h1>sec</h1>
-          <p>Yungest To Do It</p>
-          <hr />
-          <div class="socials">
-            <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
-            <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
-            <div><span class="label">📧 Email</span> – <span>gov.mounting947@8shield.net</span></div>
+          <div class="profile-grid">
+            <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
+            <h1>sec</h1>
+            <p>Yungest To Do It</p>
+            <hr />
+            <div class="socials">
+              <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
+              <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
+              <div><span class="label">📧 Email</span> – <span>gov.mounting947@8shield.net</span></div>
+            </div>
           </div>
         </div>
       `;
