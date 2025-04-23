@@ -36,7 +36,7 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    
+    /* Profile Container */
     .profile-container {
       padding: 20px;
       background-color: #1e1e1e;
@@ -46,9 +46,10 @@
       max-width: 400px;
       margin: 20px auto;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      display: none; /* Initially hidden */
     }
 
-    
+    /* Profile Grid */
     .profile-grid {
       display: grid;
       grid-template-columns: auto;
@@ -56,7 +57,7 @@
       gap: 15px;
     }
 
-    
+    /* Profile Picture */
     img.pfp {
       width: 120px;
       height: 120px;
@@ -119,7 +120,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: left;
-      font-family: 'Arial Black', sans-serif; 
+      font-family: 'Arial Black', sans-serif;
       white-space: pre-wrap;
       color: white;
       background-color: black;
@@ -133,9 +134,9 @@
 </head>
 <body>
 
- 
+  <!-- Intro Text Before Terminal -->
   <div id="intro">
-    Welcome To Sec's Domain Press Any Key To Continue<span class="cursor">█</span>
+    Welcome To Sec's Domain. Press Any Key Or Click Anywhere To Continue<span class="cursor">█</span>
   </div>
 
   <script>
@@ -156,14 +157,15 @@
 
     const lines = [
       "root@adduser.sh",
-      "Please state the user you would like to add --> sec",
-      "Please set the password for 'sec' --> ********",
-      "Shall we create a home directory for 'sec'? --> Yes",
+      "Please state the user you would like to add > sec",
+      "Please set the password for 'sec' > ********",
+      "Shall we create a home directory for 'sec'? > Yes",
       "",
       "Directory Created, time for your socials!",
       "",
       "Logging in...",
-      "Login successful.",
+      "Error: Crashed Code 404",
+      "You passed.",
     ];
 
     let i = 0;
@@ -184,7 +186,7 @@
           setTimeout(typeLine, 300);
         }
       } else {
-        document.querySelector('.cursor').style.display = 'none';
+        setTimeout(showProfile, 500);  // Delay before showing the profile
       }
     }
 
@@ -192,9 +194,14 @@
       document.body.innerHTML += `<div id="terminal"></div>`;
       typeLine();
     }
+
+    function showProfile() {
+      document.querySelector("#terminal").style.display = 'none';  // Hide terminal
+      document.querySelector(".profile-container").style.display = 'block';  // Show profile
+    }
   </script>
 
-  
+  <!-- Profile Section (Initially hidden) -->
   <div class="profile-container">
     <div class="profile-grid">
       <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
