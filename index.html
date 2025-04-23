@@ -36,11 +36,16 @@
       50.01%, 100% { opacity: 0; }
     }
 
+    /* Profile page layout */
     .profile-container {
       padding: 40px;
-      background-color: black;
+      background-color: #1e1e1e;
       color: white;
       font-family: 'Arial Black', sans-serif;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     }
 
     .profile-grid {
@@ -57,12 +62,19 @@
       border: 3px solid white;
       object-fit: cover;
       margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     }
 
     h1 {
       color: #ff3c3c;
       margin: 10px 0;
-      font-size: 28px;
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 20px;
+      margin: 10px 0;
+      color: #bbb;
     }
 
     hr {
@@ -79,6 +91,10 @@
       font-size: 18px;
     }
 
+    .socials div {
+      margin: 15px 0;
+    }
+
     .socials a {
       color: #7d7dff;
       text-decoration: none;
@@ -86,10 +102,12 @@
 
     .socials a:hover {
       color: #fff;
+      text-decoration: underline;
     }
 
     .label {
       color: #ff5555;
+      font-weight: bold;
     }
 
     #terminal {
@@ -105,7 +123,9 @@
       padding: 30px;
       border: 1px solid white;
       width: 500px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
     }
+
   </style>
 </head>
 <body>
@@ -132,7 +152,7 @@
     setupEventListeners();  // Setting up both listeners when the page loads
 
     const lines = [
-      "root@govshield.cc",
+      "root@adduser.sh",
       "Please state the user you would like to add > sec",
       "Please set the password for 'sec' > ********",
       "Shall we create a home directory for 'sec'? > Yes",
