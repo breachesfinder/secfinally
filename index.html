@@ -36,43 +36,16 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    /* Terminal Styles */
-    #terminal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: left;
-      font-family: 'Courier New', monospace;
-      white-space: pre-wrap;
-      color: white;
-      background-color: black;
-      padding: 30px;
-      border: 1px solid white;
-      width: 500px;
-      z-index: 10;
-      line-height: 1.5; /* Added line spacing for clarity */
-    }
-
-    /* Profile Styles */
+    /* Profile Box Styles */
     .profile-container {
       padding: 40px;
+      background-color: black;
       color: white;
       font-family: 'Arial Black', sans-serif;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Glowing effect */
+      border-radius: 10px;
+      margin-top: 20px;
       display: none;
-      animation: shine 2s infinite alternate; /* Shine animation */
-      text-align: center;
-      position: relative;
-      margin-top: 50px;
-    }
-
-    @keyframes shine {
-      0% {
-        text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
-      }
-      100% {
-        text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white;
-      }
     }
 
     .profile-grid {
@@ -91,21 +64,15 @@
       margin-bottom: 20px;
     }
 
-    h1 {
+    h1, p {
       color: white;
       margin: 10px 0;
       font-size: 28px;
       text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing text effect */
-      animation: glowingText 1.5s infinite alternate; /* White glowing text animation */
     }
 
-    @keyframes glowingText {
-      0% {
-        text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white;
-      }
-      100% {
-        text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 50px white;
-      }
+    p {
+      font-size: 18px;
     }
 
     hr {
@@ -125,6 +92,7 @@
     .socials a {
       color: #7d7dff;
       text-decoration: none;
+      text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing effect */
     }
 
     .socials a:hover {
@@ -132,11 +100,24 @@
     }
 
     .label {
-      color: white;
-      text-shadow: 0 0 10px white, 0 0 15px white; /* Glowing effect */
-      animation: glowingText 1.5s infinite alternate; /* White glowing text animation */
+      color: #ff5555;
+      text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing effect */
     }
 
+    #terminal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      color: white;
+      background-color: black;
+      padding: 30px;
+      border: 1px solid white;
+      width: 500px;
+    }
   </style>
 </head>
 <body>
@@ -204,8 +185,8 @@
     }
 
     function showProfile() {
-      const profileHTML = `
-        <div class="profile-container" style="display:block;">
+      document.body.innerHTML = `
+        <div class="profile-container">
           <div class="profile-grid">
             <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
             <h1>sec</h1>
@@ -222,7 +203,6 @@
           </audio>
         </div>
       `;
-      document.body.insertAdjacentHTML('beforeend', profileHTML);
     }
   </script>
 
