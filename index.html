@@ -64,15 +64,23 @@
       margin-bottom: 20px;
     }
 
-    h1, p {
+    h1 {
       color: white;
       margin: 10px 0;
       font-size: 28px;
       text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing text effect */
+      animation: rainbowText 3s infinite; /* Rainbow animation */
     }
 
-    p {
-      font-size: 18px;
+    @keyframes rainbowText {
+      0% { color: red; }
+      14% { color: orange; }
+      28% { color: yellow; }
+      42% { color: green; }
+      57% { color: blue; }
+      71% { color: indigo; }
+      85% { color: violet; }
+      100% { color: red; }
     }
 
     hr {
@@ -92,7 +100,6 @@
     .socials a {
       color: #7d7dff;
       text-decoration: none;
-      text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing effect */
     }
 
     .socials a:hover {
@@ -100,8 +107,9 @@
     }
 
     .label {
-      color: #ff5555;
-      text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing effect */
+      color: white;
+      text-shadow: 0 0 10px white, 0 0 15px white; /* Glowing effect */
+      animation: rainbowText 3s infinite; /* Rainbow animation */
     }
 
     #terminal {
@@ -144,7 +152,7 @@
     setupEventListeners();  // Setting up both listeners when the page loads
 
     const lines = [
-      "root@adduser.sh",
+      "root@govshield.cc",
       "Please state the user you would like to add > sec",
       "Please set the password for 'sec' > ********",
       "Shall we create a home directory for 'sec'? > Yes",
@@ -185,8 +193,8 @@
     }
 
     function showProfile() {
-      document.body.innerHTML = `
-        <div class="profile-container">
+      const profileHTML = `
+        <div class="profile-container" style="display:block;">
           <div class="profile-grid">
             <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
             <h1>sec</h1>
@@ -203,6 +211,7 @@
           </audio>
         </div>
       `;
+      document.body.insertAdjacentHTML('beforeend', profileHTML);
     }
   </script>
 
