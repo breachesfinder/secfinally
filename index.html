@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>sec's domain</title>
+  <meta charset="UTF-8" />
+  <title>Sec's Domain</title>
   <style>
     body {
       background: black;
       color: white;
-      font-family: 'Arial Black', Arial, sans-serif;
+      font-family: 'Arial Black', sans-serif;
       font-size: 16px;
       padding: 30px;
-      white-space: pre-wrap;
-      overflow: hidden;
+      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
-    }
-
-    #start-screen {
-      text-align: center;
-      font-size: 24px;
-      cursor: pointer;
+      overflow: hidden;
     }
 
     .cursor {
@@ -37,50 +30,44 @@
     }
 
     .profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
       color: white;
-      padding-top: 80px;
     }
 
     .profile-grid {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-align: center;
+      gap: 10px;
     }
 
     .pfp {
-      width: 200px;
-      height: 200px;
+      width: 170px;
+      height: 170px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 30px;
-      border: 2px solid #fff;
+      border: 2px solid white;
+      margin-bottom: 10px;
     }
 
     h1 {
       color: #ff3c3c;
       margin: 10px 0;
-      font-size: 36px;
-    }
-
-    p {
-      font-size: 20px;
-      margin-bottom: 20px;
     }
 
     hr {
       border: 0;
       border-top: 1px solid #888;
-      margin: 30px auto;
+      margin: 20px auto;
       width: 60%;
     }
 
     .socials {
       text-align: left;
-      display: inline-block;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     .socials a {
@@ -89,63 +76,73 @@
     }
 
     .socials a:hover {
-      color: #fff;
+      color: white;
       text-decoration: underline;
     }
 
     .socials div {
-      margin: 15px 0;
-      font-size: 18px;
+      margin: 6px 0;
     }
 
     .label {
       color: #ff5555;
     }
+
+    #press-start {
+      font-size: 22px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <div id="start-screen">Welcome To Sec's Domain Press Any Key To Continue</div>
+  <div id="screen">
+    <div id="press-start">Welcome To Sec's Domain<br>Press Any Key To Continue</div>
+  </div>
 
   <script>
-    const lines = [
-      "root@adduser.shw govshield.cc",
-      "Please state the user you would like to add > sec",
-      "Please set the password for 'sec' > ********",
-      "Shall we create a home directory for 'sec'? > Yes",
-      "",
-      "Directory Created, time for your socials!",
-      "",
-      "Login Successful...",
-    ];
+    const startScreen = document.getElementById("screen");
 
-    const terminalHTML = `<div id="terminal"></div><span class="cursor">█</span>`;
-    let i = 0;
-    let j = 0;
-    const speed = 20;
-    let terminal;
+    document.addEventListener("keydown", () => {
+      startFakeTerminal();
+    }, { once: true });
 
-    function startTyping() {
-      document.body.innerHTML = terminalHTML;
-      terminal = document.getElementById("terminal");
-      typeLine();
-    }
+    function startFakeTerminal() {
+      document.body.innerHTML = '<div id="terminal"></div><span class="cursor">█</span>';
+      const lines = [
+        "root@govshield.cc",
+        "Please state the user you would like to add > sec",
+        "Please set the password for 'sec' > ********",
+        "Shall we create a home directory for 'sec'? > Yes",
+        "",
+        "Directory Created, time for your socials!",
+        "",
+        "Login successful..."
+      ];
 
-    function typeLine() {
-      if (i < lines.length) {
-        if (j < lines[i].length) {
-          terminal.innerHTML += lines[i].charAt(j);
-          j++;
-          setTimeout(typeLine, speed);
+      let i = 0;
+      let j = 0;
+      const speed = 30;
+      const terminal = document.getElementById("terminal");
+
+      function typeLine() {
+        if (i < lines.length) {
+          if (j < lines[i].length) {
+            terminal.innerHTML += lines[i].charAt(j);
+            j++;
+            setTimeout(typeLine, speed);
+          } else {
+            terminal.innerHTML += '\n';
+            i++;
+            j = 0;
+            setTimeout(typeLine, 250);
+          }
         } else {
-          terminal.innerHTML += '\n';
-          i++;
-          j = 0;
-          setTimeout(typeLine, 200);
+          document.querySelector('.cursor').style.display = 'none';
+          setTimeout(showProfile, 800);
         }
-      } else {
-        document.querySelector('.cursor').style.display = 'none';
-        setTimeout(showProfile, 500);
       }
+
+      typeLine();
     }
 
     function showProfile() {
@@ -157,28 +154,18 @@
             <p>Yungest To Do It</p>
             <hr />
             <div class="socials">
-              <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
-              <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
+              <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
+              <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
               <div><span class="label">📧 Email</span> – <span>gov.mounting947@8shield.net</span></div>
             </div>
           </div>
+          <audio autoplay loop>
+            <source src="https://files.catbox.moe/jq8p59.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
         </div>
       `;
     }
-
-    
-    function init() {
-      document.addEventListener('keydown', startTypingOnce);
-      document.addEventListener('click', startTypingOnce);
-    }
-
-    function startTypingOnce() {
-      document.removeEventListener('keydown', startTypingOnce);
-      document.removeEventListener('click', startTypingOnce);
-      startTyping();
-    }
-
-    init();
   </script>
 </body>
 </html>
