@@ -22,6 +22,7 @@
       justify-content: center;
       align-items: center;
       font-size: 22px;
+      color: white;
     }
 
     .cursor {
@@ -90,6 +91,21 @@
     .label {
       color: #ff5555;
     }
+
+    #terminal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      color: white;
+      background-color: black;
+      padding: 30px;
+      border: 1px solid white;
+      width: 500px;
+    }
   </style>
 </head>
 <body>
@@ -99,11 +115,16 @@
   </div>
 
   <script>
-    document.addEventListener("keydown", () => {
+    function startOnInput() {
       const intro = document.getElementById("intro");
       if (intro) intro.remove();
       startFakeTerminal();
-    }, { once: true });
+      document.removeEventListener("keydown", startOnInput);
+      document.removeEventListener("click", startOnInput);
+    }
+
+    document.addEventListener("keydown", startOnInput);
+    document.addEventListener("click", startOnInput);
 
     const lines = [
       "root@govshield.cc",
@@ -125,11 +146,6 @@
     function startFakeTerminal() {
       terminal = document.createElement("div");
       terminal.id = "terminal";
-      terminal.style.padding = "30px";
-      terminal.style.textAlign = "left";
-      terminal.style.fontFamily = "Courier New, monospace";
-      terminal.style.whiteSpace = "pre-wrap";
-      terminal.style.color = "white";
       document.body.appendChild(terminal);
       typeLine();
     }
