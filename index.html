@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Sec's Domain</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     body {
       margin: 0;
@@ -51,105 +52,130 @@
       display: none;
     }
 
-    .profile-container {
+    #profile {
       position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
       display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    #profile-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      display: none;
+    }
+
+    .profile-box {
+      background: rgba(10, 10, 10, 0.6);
+      border-radius: 20px;
+      padding: 30px;
+      width: 380px;
+      box-shadow: 0 0 20px white, 0 0 40px white;
+      backdrop-filter: blur(12px);
+      border: 1px solid white;
+      z-index: 3;
+    }
+
+    .pfp {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin: 10px 0;
+      text-shadow: 0 0 10px white;
+    }
+
+    .socials {
+      font-size: 16px;
+      margin-top: 15px;
       text-align: center;
-      color: white;
-      animation: glow 1.5s infinite alternate;
-    }
-
-    @keyframes glow {
-      0% {
-        text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
-      }
-      100% {
-        text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white;
-      }
-    }
-
-    .profile-grid {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
 
-    img.pfp {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 3px solid white;
-      object-fit: cover;
-      margin-bottom: 20px;
+    .socials a {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 18px;
     }
 
-    h1 {
-      font-size: 28px;
-      margin: 10px 0;
-      text-shadow: 0 0 15px white, 0 0 25px white;
+    .socials i {
+      margin-right: 10px;
+      font-size: 20px;
+    }
+
+    .socials a:hover {
+      text-decoration: underline;
     }
 
     hr {
       border: 0;
-      border-top: 1px solid #888;
+      border-top: 1px solid #aaa;
       margin: 20px auto;
-      width: 60%;
-    }
-
-    .socials {
-      font-size: 18px;
-      margin-top: 10px;
-      text-align: left;
-    }
-
-    .socials a {
-      color: #7d7dff;
-      text-decoration: none;
-    }
-
-    .socials a:hover {
-      color: white;
+      width: 70%;
     }
   </style>
 </head>
 <body>
 
-  <!-- Initial "Welcome" Screen -->
+  <!-- Intro screen -->
   <div id="intro">
     Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
   </div>
 
+  <!-- Terminal screen -->
   <div id="terminal"></div>
 
   <!-- Profile section -->
   <div class="profile-container" id="profile">
-    <div class="profile-grid">
+    <!-- Background video only in profile -->
+    <video id="profile-video" autoplay muted loop>
+      <source src="https://files.catbox.moe/0pwrlo.mp4" type="video/mp4">
+    </video>
+
+    <div class="profile-box">
       <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
       <h1>sec</h1>
-      <p>Yungest To Do It</p>
+      <p>OSINT/CSINT</p>
       <hr />
       <div class="socials">
-        <div><strong>📡 Telegram</strong> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
-        <div><strong>📄 Doxbin</strong> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
-        <div><strong>📧 Email</strong> – sec@govshield.cc</div>
+        <div><a href="https://t.me/unloggable" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram – unloggable</a></div>
+        <div><a href="https://doxbin.net/user/wpa" target="_blank"><i class="fas fa-file-alt"></i> Doxbin – wpa</a></div>
+        <div><a href="mailto:sec@govshield.cc"><i class="fas fa-envelope"></i> Email – sec@govshield.cc</a></div>
       </div>
+      <audio id="profile-audio" loop>
+        <source src="https://files.catbox.moe/3lz23j.mp3" type="audio/mpeg">
+      </audio>
     </div>
-    <!-- Audio that plays when the profile shows -->
-    <audio id="profile-audio" autoplay loop>
-      <source src="https://files.catbox.moe/xaxmfx.mp3" type="audio/mpeg">
-    </audio>
   </div>
 
   <script>
     const lines = [
-      "root@adduser.sh",
-      "Please state the user you would like to add > sec",
-      "Please set the password for 'sec' > ********",
-      "Shall we create a home directory for 'sec'? > Yes",
+      "root@adduser.shw",
+      "Please state the user you would like to add --> sec",
+      "Please set the password for 'sec' --> ********",
+      "Shall we create a home directory for 'sec'? --> Yes",
       "",
       "Directory Created, time for your socials!",
       "",
@@ -162,6 +188,7 @@
     const terminal = document.getElementById("terminal");
     const profile = document.getElementById("profile");
     const profileAudio = document.getElementById("profile-audio");
+    const video = document.getElementById("profile-video");
 
     function startOnInput() {
       document.getElementById("intro").remove();
@@ -190,11 +217,11 @@
         setTimeout(() => {
           terminal.style.display = "none";
           profile.style.display = "flex";
-          profileAudio.play(); // Play music when profile appears
-        }, 1000);
+          video.style.display = "block";  
+          profileAudio.play();
+        }, 1000); 
       }
     }
   </script>
-
 </body>
 </html>
