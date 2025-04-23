@@ -6,8 +6,8 @@
   <style>
     body {
       background: black;
-      color: white; /* Text color set to white */
-      font-family: 'Arial Black', Arial, sans-serif; /* Font changed to Arial Black */
+      color: white; 
+      font-family: 'Arial Black', Arial, sans-serif;
       font-size: 16px;
       padding: 30px;
       white-space: pre-wrap;
@@ -34,7 +34,7 @@
     .profile-container {
       text-align: center;
       color: white;
-      padding-top: 80px; /* Increase the padding for a larger profile space */
+      padding-top: 80px; 
     }
 
     .profile-grid {
@@ -46,23 +46,23 @@
     }
 
     .pfp {
-      width: 200px; /* Increased profile picture size */
-      height: 200px; /* Increased profile picture size */
+      width: 200px; 
+      height: 200px; 
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 30px; /* Increased margin for better spacing */
+      margin-bottom: 30px; 
       border: 2px solid #fff;
     }
 
     h1 {
       color: #ff3c3c;
-      margin: 10px 0; /* Increased margin for better spacing */
-      font-size: 36px; /* Larger font size */
+      margin: 10px 0; 
+      font-size: 36px; 
     }
 
     p {
-      font-size: 20px; /* Increased paragraph size */
-      margin-bottom: 20px; /* Increased margin for better spacing */
+      font-size: 20px; 
+      margin-bottom: 20px; 
     }
 
     hr {
@@ -90,7 +90,7 @@
 
     .socials div {
       margin: 15px 0;
-      font-size: 18px; /* Increased font size for social links */
+      font-size: 18px;
     }
 
     .label {
@@ -115,7 +115,7 @@
 
     let i = 0;
     let j = 0;
-    const speed = 20; // Increased the speed of terminal text
+    const speed = 20; 
     const terminal = document.getElementById("terminal");
 
     function typeLine() {
@@ -128,11 +128,11 @@
           terminal.innerHTML += '\n';
           i++;
           j = 0;
-          setTimeout(typeLine, 200); // Slight delay before starting next line
+          setTimeout(typeLine, 200); 
         }
       } else {
         document.querySelector('.cursor').style.display = 'none';
-        setTimeout(showProfile, 500);  // Show profile after terminal finishes
+        setTimeout(showProfile, 500);  
       }
     }
 
