@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sec - terminal</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+      white-space: pre-wrap;
+      overflow: hidden;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+
+    .terminal {
+      padding: 30px;
+    }
+
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 50px;
+      box-sizing: border-box;
+    }
+
+    img.pfp {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 2px solid #fff;
+    }
+
+    h1 {
+      color: #ff3c3c;
+      margin: 10px 0;
+      font-size: 32px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #888;
+      margin: 30px auto;
+      width: 60%;
+    }
+
+    .socials {
+      text-align: left;
+      display: inline-block;
+      margin-top: 20px;
+      color: white;
+    }
+
+    .socials a {
+      color: #7d7dff;
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .socials div {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .label {
+      color: #ff5555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Terminal Screen -->
+  <div id="terminal" class="terminal"></div><span class="cursor">█</span>
+
+  <!-- Profile Screen -->
+  <div id="profile" class="profile-container" style="display: none;">
+    <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
+    <h1>sec</h1>
+    <p>Yungest To Do It</p>
+    <hr />
+    <div class="socials">
+      <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
+      <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
+      <div><span class="label">📧 Email</span> – <span>sec@govshield.cc</span></div>
+    </div>
+  </div>
+
+  <script>
+    const lines = [
+      "root@adduser.shw govshield.cc",
+      "Please state the user you would like to add > sec",
+      "Please set the password for 'sec' > ********",
+      "Shall we create a home directory for 'sec'? > Yes",
+      "",
+      "Directory Created, time to log in!",
+    ];
+
+    let i = 0;
+    let j = 0;
+    const speed = 35;
+    const terminal = document.getElementById("terminal");
+
+    function typeLine() {
+      if (i < lines.length) {
+        if (j < lines[i].length) {
+          terminal.innerHTML += lines[i].charAt(j);
+          j++;
+          setTimeout(typeLine, speed);
+        } else {
+          terminal.innerHTML += '\n';
+          i++;
+          j = 0;
+          setTimeout(typeLine, 300);
+        }
+      } else {
+        document.querySelector('.cursor').style.display = 'none';
+        setTimeout(simulateLogin, 500);
+      }
+    }
+
+    function simulateLogin() {
+      terminal.innerHTML = "";
+      terminal.innerHTML += "Please enter your username: > sec\n";
+      terminal.innerHTML += "Username accepted.\n";
+      terminal.innerHTML += "Please enter your password: > sec\n";
+      terminal.innerHTML += "Password accepted. Logging in...\n";
+
+      setTimeout(() => {
+        terminal.innerHTML += "\nLogin successful! Welcome to sec's terminal!";
+        setTimeout(showProfile, 1000);
+      }, 1000);
+    }
+
+    function showProfile() {
+      document.getElementById("terminal").style.display = "none";
+      document.querySelector('.cursor').style.display = "none";
+      document.getElementById("profile").style.display = "flex";
+    }
+
+    typeLine();
+  </script>
+</body>
+</html>
