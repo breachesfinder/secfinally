@@ -36,16 +36,25 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    /* Profile Box Styles */
+    /* Profile Styles */
     .profile-container {
       padding: 40px;
-      background-color: black;
       color: white;
       font-family: 'Arial Black', sans-serif;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Glowing effect */
-      border-radius: 10px;
-      margin-top: 20px;
       display: none;
+      animation: shine 2s infinite alternate; /* Shine animation */
+      text-align: center;
+      position: relative;
+      margin-top: 50px;
+    }
+
+    @keyframes shine {
+      0% {
+        text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+      }
+      100% {
+        text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white;
+      }
     }
 
     .profile-grid {
@@ -64,11 +73,21 @@
       margin-bottom: 20px;
     }
 
-    h1 {
+    h1, p {
       color: white;
       margin: 10px 0;
       font-size: 28px;
       text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing text effect */
+      animation: glowingText 1.5s infinite alternate; /* White glowing text animation */
+    }
+
+    @keyframes glowingText {
+      0% {
+        text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px white;
+      }
+      100% {
+        text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white, 0 0 50px white;
+      }
     }
 
     hr {
@@ -88,6 +107,7 @@
     .socials a {
       color: #7d7dff;
       text-decoration: none;
+      text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing effect */
     }
 
     .socials a:hover {
@@ -95,13 +115,9 @@
     }
 
     .label {
-      color: #ff5555;
-      text-shadow: 0 0 10px white, 0 0 15px white; /* Glowing effect for labels */
-    }
-
-    .glowing-text {
       color: white;
-      text-shadow: 0 0 10px white, 0 0 15px white, 0 0 25px white; /* Glowing effect for main text */
+      text-shadow: 0 0 10px white, 0 0 15px white; /* Glowing effect */
+      animation: glowingText 1.5s infinite alternate; /* White glowing text animation */
     }
 
     #terminal {
@@ -117,6 +133,7 @@
       padding: 30px;
       border: 1px solid white;
       width: 500px;
+      z-index: 10;
     }
   </style>
 </head>
@@ -144,7 +161,7 @@
     setupEventListeners();  // Setting up both listeners when the page loads
 
     const lines = [
-      "root@govshield.cc",
+      "root@adduser.sh",
       "Please state the user you would like to add > sec",
       "Please set the password for 'sec' > ********",
       "Shall we create a home directory for 'sec'? > Yes",
@@ -185,17 +202,17 @@
     }
 
     function showProfile() {
-      document.body.innerHTML = `
+      const profileHTML = `
         <div class="profile-container" style="display:block;">
           <div class="profile-grid">
             <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
-            <h1 class="glowing-text">sec</h1>
+            <h1>sec</h1>
             <p>Yungest To Do It</p>
             <hr />
             <div class="socials">
-              <div><span class="label glowing-text">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
-              <div><span class="label glowing-text">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
-              <div><span class="label glowing-text">📧 Email</span> – <span>sec@govshield.cc</span></div>
+              <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
+              <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
+              <div><span class="label">📧 Email</span> – <span>sec@govshield.cc</span></div>
             </div>
           </div>
           <audio autoplay loop>
@@ -203,6 +220,7 @@
           </audio>
         </div>
       `;
+      document.body.insertAdjacentHTML('beforeend', profileHTML);
     }
   </script>
 
