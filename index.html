@@ -46,6 +46,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
 
     img.pfp {
@@ -99,7 +100,8 @@
 
   <script>
     document.addEventListener("keydown", () => {
-      document.getElementById("intro").remove();
+      const intro = document.getElementById("intro");
+      if (intro) intro.remove();
       startFakeTerminal();
     }, { once: true });
 
@@ -118,25 +120,31 @@
     let i = 0;
     let j = 0;
     const speed = 25;
+    let terminal;
 
     function startFakeTerminal() {
-      const terminal = document.createElement("div");
+      terminal = document.createElement("div");
       terminal.id = "terminal";
+      terminal.style.padding = "30px";
+      terminal.style.textAlign = "left";
+      terminal.style.fontFamily = "Courier New, monospace";
+      terminal.style.whiteSpace = "pre-wrap";
+      terminal.style.color = "white";
       document.body.appendChild(terminal);
-      typeLine(terminal);
+      typeLine();
     }
 
-    function typeLine(terminal) {
+    function typeLine() {
       if (i < lines.length) {
         if (j < lines[i].length) {
           terminal.innerHTML += lines[i].charAt(j);
           j++;
-          setTimeout(() => typeLine(terminal), speed);
+          setTimeout(typeLine, speed);
         } else {
           terminal.innerHTML += '\n';
           i++;
           j = 0;
-          setTimeout(() => typeLine(terminal), 250);
+          setTimeout(typeLine, 250);
         }
       } else {
         setTimeout(showProfile, 1000);
