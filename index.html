@@ -51,83 +51,95 @@
       display: none;
     }
 
-    .profile-container {
+    #profile {
       position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
       display: none;
-      text-align: center;
-      color: white;
-      animation: glow 1.5s infinite alternate;
-    }
-
-    @keyframes glow {
-      0% {
-        text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
-      }
-      100% {
-        text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white;
-      }
-    }
-
-    .profile-grid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      z-index: 2;
     }
 
-    img.pfp {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 3px solid white;
+    #profile-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
       object-fit: cover;
-      margin-bottom: 20px;
+      z-index: 0;
+      display: none;
+    }
+
+    .profile-box {
+      background: rgba(10, 10, 10, 0.6);
+      border-radius: 20px;
+      padding: 30px;
+      width: 380px;
+      box-shadow: 0 0 20px white, 0 0 40px white;
+      backdrop-filter: blur(12px);
+      border: 1px solid white;
+      z-index: 3;
+    }
+
+    .pfp {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-bottom: 15px;
     }
 
     h1 {
-      font-size: 28px;
+      font-size: 26px;
       margin: 10px 0;
-      text-shadow: 0 0 15px white, 0 0 25px white;
-    }
-
-    hr {
-      border: 0;
-      border-top: 1px solid #888;
-      margin: 20px auto;
-      width: 60%;
+      text-shadow: 0 0 10px white;
     }
 
     .socials {
-      font-size: 18px;
-      margin-top: 10px;
-      text-align: left;
+      font-size: 16px;
+      margin-top: 15px;
+      text-align: center;
     }
 
     .socials a {
-      color: #7d7dff;
+      color: white;
       text-decoration: none;
     }
 
     .socials a:hover {
-      color: white;
+      text-decoration: underline;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #aaa;
+      margin: 20px auto;
+      width: 70%;
     }
   </style>
 </head>
 <body>
 
-  <!-- Initial "Welcome" Screen -->
+  <!-- Intro screen -->
   <div id="intro">
     Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
   </div>
 
+  <!-- Terminal screen -->
   <div id="terminal"></div>
+
+  <!-- Background video -->
+  <video id="profile-video" autoplay muted loop>
+    <source src="https://files.catbox.moe/w1ly3e.mp4" type="video/mp4">
+  </video>
 
   <!-- Profile section -->
   <div class="profile-container" id="profile">
-    <div class="profile-grid">
+    <div class="profile-box">
       <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
       <h1>sec</h1>
       <p>Yungest To Do It</p>
@@ -137,11 +149,10 @@
         <div><strong>📄 Doxbin</strong> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
         <div><strong>📧 Email</strong> – sec@govshield.cc</div>
       </div>
+      <audio id="profile-audio" loop>
+        <source src="https://files.catbox.moe/xaxmfx.mp3" type="audio/mpeg">
+      </audio>
     </div>
-    <!-- Audio that plays when the profile shows -->
-    <audio id="profile-audio" autoplay loop>
-      <source src="https://files.catbox.moe/xaxmfx.mp3" type="audio/mpeg">
-    </audio>
   </div>
 
   <script>
@@ -162,6 +173,7 @@
     const terminal = document.getElementById("terminal");
     const profile = document.getElementById("profile");
     const profileAudio = document.getElementById("profile-audio");
+    const video = document.getElementById("profile-video");
 
     function startOnInput() {
       document.getElementById("intro").remove();
@@ -190,11 +202,13 @@
         setTimeout(() => {
           terminal.style.display = "none";
           profile.style.display = "flex";
-          profileAudio.play(); // Play music when profile appears
-        }, 1000);
+          video.style.display = "block";  // Ensure video shows when profile appears
+          
+          // Start the audio once the profile is displayed
+          profileAudio.play();
+        }, 1000); // Audio starts after the profile is fully displayed
       }
     }
   </script>
-
 </body>
 </html>
