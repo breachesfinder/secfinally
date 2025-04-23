@@ -69,6 +69,18 @@
       margin: 10px 0;
       font-size: 28px;
       text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing text effect */
+      animation: rainbowText 3s infinite; /* Rainbow animation */
+    }
+
+    @keyframes rainbowText {
+      0% { color: red; }
+      14% { color: orange; }
+      28% { color: yellow; }
+      42% { color: green; }
+      57% { color: blue; }
+      71% { color: indigo; }
+      85% { color: violet; }
+      100% { color: red; }
     }
 
     hr {
@@ -95,13 +107,9 @@
     }
 
     .label {
-      color: #ff5555;
-      text-shadow: 0 0 10px white, 0 0 15px white; /* Glowing effect for labels */
-    }
-
-    .glowing-text {
       color: white;
-      text-shadow: 0 0 10px white, 0 0 15px white, 0 0 25px white; /* Glowing effect for main text */
+      text-shadow: 0 0 10px white, 0 0 15px white; /* Glowing effect */
+      animation: rainbowText 3s infinite; /* Rainbow animation */
     }
 
     #terminal {
@@ -185,17 +193,17 @@
     }
 
     function showProfile() {
-      document.body.innerHTML = `
+      const profileHTML = `
         <div class="profile-container" style="display:block;">
           <div class="profile-grid">
             <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
-            <h1 class="glowing-text">sec</h1>
+            <h1>sec</h1>
             <p>Yungest To Do It</p>
             <hr />
             <div class="socials">
-              <div><span class="label glowing-text">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
-              <div><span class="label glowing-text">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
-              <div><span class="label glowing-text">📧 Email</span> – <span>sec@govshield.cc</span></div>
+              <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
+              <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
+              <div><span class="label">📧 Email</span> – <span>sec@govshield.cc</span></div>
             </div>
           </div>
           <audio autoplay loop>
@@ -203,6 +211,7 @@
           </audio>
         </div>
       `;
+      document.body.insertAdjacentHTML('beforeend', profileHTML);
     }
   </script>
 
