@@ -6,7 +6,7 @@
   <style>
     body {
       background: black;
-      color: #00ff66;
+      color: white; /* Text color set to white */
       font-family: 'Courier New', Courier, monospace;
       font-size: 16px;
       padding: 30px;
@@ -23,6 +23,59 @@
     @keyframes blink {
       0%, 50% { opacity: 1; }
       50.01%, 100% { opacity: 0; }
+    }
+
+    /* Profile Grid Style */
+    .profile-container {
+      text-align: center;
+      color: white;
+      padding-top: 50px; /* Raised the profile */
+    }
+
+    .pfp {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 2px solid #fff;
+    }
+
+    h1 {
+      color: #ff3c3c;
+      margin: 5px 0;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #888;
+      margin: 20px auto;
+      width: 60%;
+    }
+
+    .socials {
+      text-align: left;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .socials a {
+      color: #7d7dff;
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .socials div {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .label {
+      color: #ff5555;
     }
   </style>
 </head>
@@ -68,21 +121,15 @@
 
     function showProfile() {
       document.body.innerHTML = `
-        <div style="text-align: center; color: white; padding-top: 20px;"> <!-- Reduced padding-top to bring everything closer -->
-          <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #fff;" />
-          <h1 style="color: #ff3c3c; margin: 5px 0;">sec</h1>
-          <p style="color: white;">Yungest To Do It</p>
-          <hr style="border: 0; border-top: 1px solid #888; margin: 20px auto; width: 60%;" />
-          <div style="text-align: left; display: inline-block; margin-top: 10px;">
-            <div style="margin: 10px 0; font-size: 16px;">
-              <span style="color: #ff5555;">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener" style="color: #7d7dff; text-decoration: none;">prettyboy58</a>
-            </div>
-            <div style="margin: 10px 0; font-size: 16px;">
-              <span style="color: #ff5555;">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener" style="color: #7d7dff; text-decoration: none;">wpa</a>
-            </div>
-            <div style="margin: 10px 0; font-size: 16px;">
-              <span style="color: #ff5555;">📧 Email</span> – <span style="color: white;">gov.mounting947@8shield.net</span>
-            </div>
+        <div class="profile-container">
+          <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
+          <h1>sec</h1>
+          <p>Yungest To Do It</p>
+          <hr />
+          <div class="socials">
+            <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank" rel="noopener">prettyboy58</a></div>
+            <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank" rel="noopener">wpa</a></div>
+            <div><span class="label">📧 Email</span> – <span>gov.mounting947@8shield.net</span></div>
           </div>
         </div>
       `;
