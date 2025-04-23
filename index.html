@@ -36,6 +36,24 @@
       50.01%, 100% { opacity: 0; }
     }
 
+    /* Terminal Styles */
+    #terminal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      color: white;
+      background-color: black;
+      padding: 30px;
+      border: 1px solid white;
+      width: 500px;
+      z-index: 10;
+      line-height: 1.5; /* Added line spacing for clarity */
+    }
+
     /* Profile Styles */
     .profile-container {
       padding: 40px;
@@ -119,22 +137,6 @@
       animation: glowingText 1.5s infinite alternate; /* White glowing text animation */
     }
 
-    #terminal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: left;
-      font-family: 'Courier New', monospace;
-      white-space: pre-wrap;
-      color: white;
-      background-color: black;
-      padding: 30px;
-      border: 1px solid white;
-      width: 500px;
-      z-index: 10;
-      line-height: 1.5; /* Added line spacing for clarity */
-    }
   </style>
 </head>
 <body>
