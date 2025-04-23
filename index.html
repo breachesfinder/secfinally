@@ -49,10 +49,11 @@
     }
 
     .profile-grid {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: auto;
       align-items: center;
       justify-content: center;
+      gap: 20px;
     }
 
     img.pfp {
@@ -143,13 +144,13 @@
       document.removeEventListener("click", startOnInput);
     }
 
-    // Listen for both keyboard and mouse click events
+    
     function setupEventListeners() {
       document.addEventListener("keydown", startOnInput);
       document.addEventListener("click", startOnInput);
     }
 
-    setupEventListeners();  // Setting up both listeners when the page loads
+    setupEventListeners();  
 
     const lines = [
       "root@adduser.sh",
