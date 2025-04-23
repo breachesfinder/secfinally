@@ -42,7 +42,7 @@
       color: white;
       font-family: 'Arial Black', sans-serif;
       display: none;
-      animation: shine 2s infinite alternate; /* Shine animation */
+      animation: shine 2s infinite alternate;
       text-align: center;
       position: relative;
       margin-top: 50px;
@@ -76,8 +76,8 @@
       color: white;
       margin: 10px 0;
       font-size: 28px;
-      text-shadow: 0 0 15px white, 0 0 25px white; /* Glowing text effect */
-      animation: glowingText 1.5s infinite alternate; /* White glowing text animation */
+      text-shadow: 0 0 15px white, 0 0 25px white;
+      animation: glowingText 1.5s infinite alternate;
     }
 
     @keyframes glowingText {
@@ -114,8 +114,8 @@
 
     .label {
       color: white;
-      text-shadow: 0 0 10px white, 0 0 15px white; /* Glowing effect */
-      animation: glowingText 1.5s infinite alternate; /* White glowing text animation */
+      text-shadow: 0 0 10px white, 0 0 15px white;
+      animation: glowingText 1.5s infinite alternate;
     }
 
     #terminal {
@@ -146,13 +146,12 @@
       document.removeEventListener("click", startOnInput);
     }
 
-    // Listen for both keyboard and mouse click events
     function setupEventListeners() {
       document.addEventListener("keydown", startOnInput);
       document.addEventListener("click", startOnInput);
     }
 
-    setupEventListeners();  // Setting up both listeners when the page loads
+    setupEventListeners();
 
     const lines = [
       "root@adduser.sh",
