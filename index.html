@@ -36,14 +36,13 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    /* Profile page layout */
     .profile-container {
-      padding: 40px;
+      padding: 20px;
       background-color: #1e1e1e;
       color: white;
       font-family: 'Arial Black', sans-serif;
       border-radius: 15px;
-      max-width: 600px;
+      max-width: 400px;
       margin: 20px auto;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     }
@@ -53,27 +52,27 @@
       grid-template-columns: auto;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
     }
 
     img.pfp {
-      width: 180px;
-      height: 180px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       border: 3px solid white;
       object-fit: cover;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     }
 
     h1 {
       color: #ff3c3c;
       margin: 10px 0;
-      font-size: 32px;
+      font-size: 28px;
     }
 
     p {
-      font-size: 20px;
+      font-size: 18px;
       margin: 10px 0;
       color: #bbb;
     }
@@ -81,19 +80,19 @@
     hr {
       border: 0;
       border-top: 1px solid #888;
-      margin: 30px auto;
+      margin: 20px auto;
       width: 60%;
     }
 
     .socials {
       text-align: left;
       display: inline-block;
-      margin-top: 20px;
-      font-size: 18px;
+      margin-top: 15px;
+      font-size: 16px;
     }
 
     .socials div {
-      margin: 15px 0;
+      margin: 12px 0;
     }
 
     .socials a {
@@ -117,7 +116,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: left;
-      font-family: 'Courier New', monospace;
+      font-family: 'Arial Black', sans-serif; /* Same font as the rest of the page */
       white-space: pre-wrap;
       color: white;
       background-color: black;
@@ -144,13 +143,12 @@
       document.removeEventListener("click", startOnInput);
     }
 
-    
     function setupEventListeners() {
       document.addEventListener("keydown", startOnInput);
       document.addEventListener("click", startOnInput);
     }
 
-    setupEventListeners();  
+    setupEventListeners();
 
     const lines = [
       "root@adduser.sh",
@@ -166,15 +164,8 @@
 
     let i = 0;
     let j = 0;
-    const speed = 25;
-    let terminal;
-
-    function startFakeTerminal() {
-      terminal = document.createElement("div");
-      terminal.id = "terminal";
-      document.body.appendChild(terminal);
-      typeLine();
-    }
+    const speed = 35;
+    const terminal = document.getElementById("terminal");
 
     function typeLine() {
       if (i < lines.length) {
@@ -186,32 +177,16 @@
           terminal.innerHTML += '\n';
           i++;
           j = 0;
-          setTimeout(typeLine, 250);
+          setTimeout(typeLine, 300);
         }
       } else {
-        setTimeout(showProfile, 1000);
+        document.querySelector('.cursor').style.display = 'none';
       }
     }
 
-    function showProfile() {
-      document.body.innerHTML = `
-        <div class="profile-container">
-          <div class="profile-grid">
-            <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
-            <h1>sec</h1>
-            <p>Yungest To Do It</p>
-            <hr />
-            <div class="socials">
-              <div><span class="label">📡 Telegram</span> – <a href="https://t.me/prettyboy58" target="_blank">prettyboy58</a></div>
-              <div><span class="label">📄 Doxbin</span> – <a href="https://doxbin.net/user/wpa" target="_blank">wpa</a></div>
-              <div><span class="label">📧 Email</span> – <span>sec@govshield.cc</span></div>
-            </div>
-          </div>
-          <audio autoplay loop>
-            <source src="https://files.catbox.moe/jq8p59.mp3" type="audio/mpeg">
-          </audio>
-        </div>
-      `;
+    function startFakeTerminal() {
+      document.body.innerHTML += `<div id="terminal"></div>`;
+      typeLine();
     }
   </script>
 
