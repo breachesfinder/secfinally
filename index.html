@@ -48,21 +48,36 @@
 
     /* Hero Section */
     #hero {
-      background: url('https://files.catbox.moe/0pwrlo.mp4') no-repeat center center;
-      background-size: cover;
-      color: #fff;
-      padding: 100px 0;
-      text-align: center;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    #hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
     }
 
     #hero h1 {
       font-size: 3em;
       text-shadow: 0 0 10px white;
+      position: relative;
+      z-index: 1;
+      padding-top: 30vh;
     }
 
     #hero p {
       font-size: 1.2em;
       margin-top: 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .cta-button {
@@ -74,6 +89,8 @@
       font-size: 16px;
       display: inline-block;
       margin-top: 30px;
+      position: relative;
+      z-index: 1;
     }
 
     /* About Section */
@@ -129,8 +146,11 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section with background video -->
   <section id="hero">
+    <video autoplay muted loop>
+      <source src="https://files.catbox.moe/pfarh1.mp4" type="video/mp4">
+    </video>
     <h1>Welcome to Sec's Domain</h1>
     <p>Your gateway to OSINT and CSINT knowledge.</p>
     <a href="#contact" class="cta-button">Contact Us</a>
