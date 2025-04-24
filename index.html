@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<DOCTYPE html>
 <head>
-  <meta charset="UTF-8" />
+
   <title>Sec's Domain</title>
   <style>
     body {
@@ -16,11 +15,8 @@
     }
 
     #intro {
-      height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
-      font-size: 22px;
       color: white;
     }
 
@@ -39,15 +35,8 @@
       position: absolute;
       top: 45%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: left;
-      font-family: 'Courier New', monospace;
-      white-space: pre-wrap;
       color: white;
       background-color: black;
-      padding: 30px;
-      border: 1px solid white;
-      width: 500px;
       display: none;
     }
 
@@ -55,8 +44,6 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
       object-fit: cover;
       z-index: -1;
       display: none;
@@ -66,51 +53,39 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
       display: none;
       animation: glow 1.5s infinite alternate;
     }
 
     @keyframes glow {
       0% {
-        text-shadow: 0 0 10px white, 0 0 20px white;
+        
       }
       100% {
-        text-shadow: 0 0 20px white, 0 0 40px white;
+        
       }
     }
 
     .profile-grid {
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px solid white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px white;
     }
 
     img.pfp {
       width: 160px;
       height: 160px;
-      border-radius: 50%;
-      border: 2px solid white;
       object-fit: cover;
-      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 28px;
-      margin: 10px 0;
+      
+  
     }
 
     hr {
       border: 0;
-      border-top: 1px solid #888;
-      margin: 20px auto;
       width: 60%;
     }
 
     .socials {
-      margin-top: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -118,19 +93,12 @@
 
     .social-link {
       display: flex;
-      align-items: center;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 10px 15px;
-      border-radius: 8px;
-      text-decoration: none;
       color: white;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
     .social-link:hover {
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 10px white;
+  
     }
 
     .social-link img.icon {
@@ -155,19 +123,19 @@
 </head>
 <body>
 
-  <!-- Background video (hidden initially) -->
+  
   <video id="video-bg" autoplay muted loop>
     <source src="https://files.catbox.moe/pfarh1.mp4" type="video/mp4">
   </video>
 
-  <!-- Intro screen -->
+  
   <div id="intro">
     Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
   </div>
 
-  <div id="terminal"></div>
+  
 
-  <!-- Profile -->
+
   <div class="profile-container" id="profile">
     <div class="profile-grid">
       <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
@@ -203,12 +171,8 @@
       "Login successful.",
     ];
 
-    let i = 0, j = 0;
-    const speed = 25;
-    const terminal = document.getElementById("terminal");
-    const profile = document.getElementById("profile");
-    const profileAudio = document.getElementById("profile-audio");
-    const videoBg = document.getElementById("video-bg");
+    
+    
 
     function typeLine() {
       if (i < lines.length) {
@@ -242,13 +206,8 @@
     }
 
     function launchSnow() {
-      for (let i = 0; i < 40; i++) {
-        const snowflake = document.createElement('div');
+      
         snowflake.classList.add('snowflake');
-        snowflake.style.left = Math.random() * window.innerWidth + 'px';
-        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-        snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
-        snowflake.innerHTML = '❄';
         document.body.appendChild(snowflake);
         setTimeout(() => snowflake.remove(), 7000);
       }
