@@ -1,89 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domain Marketplace</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        .container {
-            padding: 20px;
-        }
-        .domain-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .domain-item {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-        }
-        .domain-item h3 {
-            margin: 0;
-            font-size: 20px;
-        }
-        .domain-item p {
-            color: #888;
-        }
-        .btn-buy {
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn-buy:hover {
-            background-color: #218838;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sec's Domain</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 16px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #intro {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      color: white;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+
+    #terminal {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      color: white;
+      background-color: black;
+      padding: 30px;
+      border: 1px solid white;
+      width: 500px;
+      display: none;
+    }
+
+    #video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      display: none;
+    }
+
+    .profile-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 10px white, 0 0 20px white;
+      }
+      100% {
+        text-shadow: 0 0 20px white, 0 0 40px white;
+      }
+    }
+
+    .profile-grid {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px white;
+    }
+
+    img.pfp {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 2px solid white;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 10px 0;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #888;
+      margin: 20px auto;
+      width: 60%;
+    }
+
+    .socials {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 10px white;
+    }
+
+    .social-link img.icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      z-index: 1000;
+      color: white;
+      font-size: 1em;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Domain Marketplace</h1>
-        <p>Buy and Sell Domain Names</p>
-    </header>
 
-    <div class="container">
-        <h2>Available Domains for Sale</h2>
-        <div class="domain-list">
-            <!-- Domain Item -->
-            <div class="domain-item">
-                <h3>exampledomain.com</h3>
-                <p>Price: $50</p>
-                <button class="btn-buy" onclick="alert('Domain Purchased!')">Buy Now</button>
-            </div>
-            <!-- Domain Item -->
-            <div class="domain-item">
-                <h3>yourwebsite.net</h3>
-                <p>Price: $40</p>
-                <button class="btn-buy" onclick="alert('Domain Purchased!')">Buy Now</button>
-            </div>
-            <!-- Domain Item -->
-            <div class="domain-item">
-                <h3>coolbrand.org</h3>
-                <p>Price: $75</p>
-                <button class="btn-buy" onclick="alert('Domain Purchased!')">Buy Now</button>
-            </div>
-        </div>
+  <!-- Background video -->
+  <video id="video-bg" autoplay muted loop playsinline>
+    <source src="https://files.catbox.moe/pfarh1.mp4" type="video/mp4">
+  </video>
+
+  <!-- Intro screen -->
+  <div id="intro">
+    Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
+  </div>
+
+  <div id="terminal"></div>
+
+  <!-- Profile -->
+  <div class="profile-container" id="profile">
+    <div class="profile-grid">
+      <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" />
+      <h1>Sec</h1>
+      <p>OSINT/CSINT</p>
+      <hr />
+      <div class="socials">
+        <a href="https://t.me/unloggable" target="_blank" class="social-link">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="icon" alt="Telegram"> @unloggable
+        </a>
+        <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">
+          <img src="https://img.icons8.com/ios-filled/50/ffffff/document--v1.png" class="icon" alt="Doxbin"> doxbin.net/user/wpa
+        </a>
+        <a href="mailto:sec@govshield.cc" class="social-link">
+          <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" class="icon" alt="Email"> sec@govshield.cc
+        </a>
+      </div>
     </div>
+    <audio id="profile-audio" autoplay loop>
+      <source src="https://files.catbox.moe/22w2hy.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
-    <script>
-        // You can add any JavaScript for additional features here
-    </script>
+  <script>
+    const lines = [
+      "root@adduser.shw",
+      "Please state the user you would like to add --> sec",
+      "Please set the password for 'sec' --> ********",
+      "Shall we create a home directory for 'sec'? --> Yes",
+      "Directory Created, time for your socials!",
+      "",
+      "Logging in...",
+      "Login successful.",
+    ];
+
+    let i = 0, j = 0;
+    const speed = 25;
+    const terminal = document.getElementById("terminal");
+    const profile = document.getElementById("profile");
+    const profileAudio = document.getElementById("profile-audio");
+    const videoBg = document.getElementById("video-bg");
+
+    function typeLine() {
+      if (i < lines.length) {
+        if (j < lines[i].length) {
+          terminal.innerHTML += lines[i].charAt(j);
+          j++;
+          setTimeout(typeLine, speed);
+        } else {
+          terminal.innerHTML += '\n';
+          i++;
+          j = 0;
+          setTimeout(typeLine, 250);
+        }
+      } else {
+        setTimeout(() => {
+          terminal.style.display = "none";
+          profile.style.display = "flex";
+          videoBg.style.display = "block";
+          profileAudio.play().catch(e => console.log("Autoplay blocked"));
+          startSnowLoop(); // Start snow only here
+        }, 1000);
+      }
+    }
+
+    function startOnInput() {
+      document.getElementById("intro").remove();
+      terminal.style.display = "block";
+      typeLine();
+      document.removeEventListener("keydown", startOnInput);
+      document.removeEventListener("click", startOnInput);
+    }
+
+    function launchSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+      snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      snowflake.innerHTML = '❄';
+      document.body.appendChild(snowflake);
+      setTimeout(() => snowflake.remove(), 10000);
+    }
+
+    function startSnowLoop() {
+      setInterval(launchSnowflake, 200); // Only starts after profile appears
+    }
+
+    document.addEventListener("keydown", startOnInput);
+    document.addEventListener("click", startOnInput);
+  </script>
+
 </body>
 </html>
