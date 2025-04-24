@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sec's Domain</title>
   <style>
     body {
@@ -7,21 +10,19 @@
       padding: 0;
       background: black;
       color: white;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 16px;
       overflow: hidden;
       text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
     }
 
     #intro {
-      color: white;
-      font-size: 24px;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: 22px;
+      color: white;
     }
 
     .cursor {
@@ -40,6 +41,9 @@
       top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
       color: white;
       background-color: black;
       padding: 30px;
@@ -69,45 +73,65 @@
     }
 
     @keyframes glow {
-      0% {}
-      100% {}
+      0% {
+        text-shadow: 0 0 10px white, 0 0 20px white;
+      }
+      100% {
+        text-shadow: 0 0 20px white, 0 0 40px white;
+      }
     }
 
     .profile-grid {
       background: rgba(0, 0, 0, 0.6);
       border: 2px solid white;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 300px;
-      border-radius: 10px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px white;
     }
 
     img.pfp {
       width: 160px;
       height: 160px;
-      object-fit: cover;
       border-radius: 50%;
+      border: 2px solid white;
+      object-fit: cover;
+      margin-bottom: 20px;
     }
 
     h1 {
+      font-size: 28px;
       margin: 10px 0;
     }
 
+    hr {
+      border: 0;
+      border-top: 1px solid #888;
+      margin: 20px auto;
+      width: 60%;
+    }
+
     .socials {
+      margin-top: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      text-align: left;
     }
 
     .social-link {
       display: flex;
-      gap: 10px;
-      color: white;
       align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 10px white;
     }
 
     .social-link img.icon {
@@ -128,45 +152,28 @@
       0% { transform: translateY(0); }
       100% { transform: translateY(100vh); }
     }
-
-    #typed-text {
-      color: white;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid white;
-      width: fit-content;
-      margin: 0 auto;
-      animation: typing 3s steps(20, end), blink-caret 0.75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 11ch }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: white }
-    }
   </style>
 </head>
 <body>
 
+  <!-- Background video -->
   <video id="video-bg" autoplay muted loop playsinline>
     <source src="https://files.catbox.moe/pfarh1.mp4" type="video/mp4">
   </video>
 
+  <!-- Intro screen -->
   <div id="intro">
     Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
   </div>
 
   <div id="terminal"></div>
 
+  <!-- Profile -->
   <div class="profile-container" id="profile">
     <div class="profile-grid">
       <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" />
       <h1>Sec</h1>
-      <p id="typed-text"></p>
+      <p>OSINT/CSINT</p>
       <hr />
       <div class="socials">
         <a href="https://t.me/unloggable" target="_blank" class="social-link">
@@ -180,8 +187,7 @@
         </a>
       </div>
     </div>
-    <!-- Audio will only play when profile shows -->
-    <audio id="profile-audio">
+    <audio id="profile-audio" autoplay loop>
       <source src="https://files.catbox.moe/22w2hy.mp3" type="audio/mpeg">
     </audio>
   </div>
@@ -202,8 +208,8 @@
     const speed = 25;
     const terminal = document.getElementById("terminal");
     const profile = document.getElementById("profile");
-    const videoBg = document.getElementById("video-bg");
     const profileAudio = document.getElementById("profile-audio");
+    const videoBg = document.getElementById("video-bg");
 
     function typeLine() {
       if (i < lines.length) {
@@ -222,10 +228,8 @@
           terminal.style.display = "none";
           profile.style.display = "flex";
           videoBg.style.display = "block";
-          launchSnow();
-          profileAudio.play().catch(err => {
-            console.log("User interaction required to autoplay:", err);
-          });
+          profileAudio.play().catch(e => console.log("Autoplay blocked"));
+          startSnowLoop(); // Start snow only here
         }, 1000);
       }
     }
@@ -238,25 +242,23 @@
       document.removeEventListener("click", startOnInput);
     }
 
-    function launchSnow() {
-      setInterval(() => {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.style.left = Math.random() * window.innerWidth + 'px';
-        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-        snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
-        snowflake.innerHTML = '❄';
-        document.body.appendChild(snowflake);
-        setTimeout(() => snowflake.remove(), 7000);
-      }, 200);
+    function launchSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+      snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      snowflake.innerHTML = '❄';
+      document.body.appendChild(snowflake);
+      setTimeout(() => snowflake.remove(), 10000);
+    }
+
+    function startSnowLoop() {
+      setInterval(launchSnowflake, 200); // Only starts after profile appears
     }
 
     document.addEventListener("keydown", startOnInput);
     document.addEventListener("click", startOnInput);
-
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("typed-text").textContent = "OSINT/CSINT";
-    });
   </script>
 
 </body>
