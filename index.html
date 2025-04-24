@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sec's Domain</title>
   <style>
     body {
@@ -152,28 +152,46 @@
       0% { transform: translateY(0); }
       100% { transform: translateY(100vh); }
     }
+
+    #typed-text {
+      font-size: 18px;
+      color: white;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid white;
+      width: fit-content;
+      margin: 0 auto;
+      animation: typing 3s steps(20, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 11ch }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: white }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Background video -->
   <video id="video-bg" autoplay muted loop playsinline>
     <source src="https://files.catbox.moe/pfarh1.mp4" type="video/mp4">
   </video>
 
-  <!-- Intro screen -->
   <div id="intro">
     Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
   </div>
 
   <div id="terminal"></div>
 
-  <!-- Profile -->
   <div class="profile-container" id="profile">
     <div class="profile-grid">
       <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" />
       <h1>Sec</h1>
-      <p>OSINT/CSINT</p>
+      <p id="typed-text"></p>
       <hr />
       <div class="socials">
         <a href="https://t.me/unloggable" target="_blank" class="social-link">
@@ -229,7 +247,7 @@
           profile.style.display = "flex";
           videoBg.style.display = "block";
           profileAudio.play().catch(e => console.log("Autoplay blocked"));
-          startSnowLoop(); // Start snow only here
+          launchSnow();
         }, 1000);
       }
     }
@@ -242,23 +260,25 @@
       document.removeEventListener("click", startOnInput);
     }
 
-    function launchSnowflake() {
-      const snowflake = document.createElement('div');
-      snowflake.classList.add('snowflake');
-      snowflake.style.left = Math.random() * window.innerWidth + 'px';
-      snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-      snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
-      snowflake.innerHTML = '❄';
-      document.body.appendChild(snowflake);
-      setTimeout(() => snowflake.remove(), 10000);
-    }
-
-    function startSnowLoop() {
-      setInterval(launchSnowflake, 200); // Only starts after profile appears
+    function launchSnow() {
+      setInterval(() => {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.style.left = Math.random() * window.innerWidth + 'px';
+        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+        snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        snowflake.innerHTML = '❄';
+        document.body.appendChild(snowflake);
+        setTimeout(() => snowflake.remove(), 7000);
+      }, 200);
     }
 
     document.addEventListener("keydown", startOnInput);
     document.addEventListener("click", startOnInput);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("typed-text").textContent = "OSINT/CSINT";
+    });
   </script>
 
 </body>
