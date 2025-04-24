@@ -228,7 +228,7 @@
           terminal.style.display = "none";
           profile.style.display = "flex";
           videoBg.style.display = "block";
-          launchSnow();
+          profileAudio.play().catch(e => console.log("Autoplay blocked"));
         }, 1000);
       }
     }
@@ -236,24 +236,24 @@
     function startOnInput() {
       document.getElementById("intro").remove();
       terminal.style.display = "block";
-      profileAudio.play().catch(e => console.log("Autoplay blocked")); // safe play
       typeLine();
       document.removeEventListener("keydown", startOnInput);
       document.removeEventListener("click", startOnInput);
     }
 
-    function launchSnow() {
-      for (let i = 0; i < 40; i++) {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.style.left = Math.random() * window.innerWidth + 'px';
-        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-        snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
-        snowflake.innerHTML = '❄';
-        document.body.appendChild(snowflake);
-        setTimeout(() => snowflake.remove(), 7000);
-      }
+    function launchSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+      snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      snowflake.innerHTML = '❄';
+      document.body.appendChild(snowflake);
+      setTimeout(() => snowflake.remove(), 10000);
     }
+
+    // Continuous snow loop
+    setInterval(launchSnowflake, 200);
 
     document.addEventListener("keydown", startOnInput);
     document.addEventListener("click", startOnInput);
