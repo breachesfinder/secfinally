@@ -229,6 +229,7 @@
           profile.style.display = "flex";
           videoBg.style.display = "block";
           profileAudio.play().catch(e => console.log("Autoplay blocked"));
+          startSnowLoop(); // Start snow only here
         }, 1000);
       }
     }
@@ -252,8 +253,9 @@
       setTimeout(() => snowflake.remove(), 10000);
     }
 
-    // Continuous snow loop
-    setInterval(launchSnowflake, 200);
+    function startSnowLoop() {
+      setInterval(launchSnowflake, 200); // Only starts after profile appears
+    }
 
     document.addEventListener("keydown", startOnInput);
     document.addEventListener("click", startOnInput);
