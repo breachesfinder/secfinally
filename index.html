@@ -32,6 +32,7 @@
       position: absolute;
       top: 45%;
       left: 50%;
+      transform: translate(-50%, -50%);
       color: white;
       background-color: black;
       padding: 30px;
@@ -44,6 +45,8 @@
       position: fixed;
       top: 0;
       left: 0;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
       z-index: -1;
       display: none;
@@ -53,15 +56,14 @@
       position: absolute;
       top: 50%;
       left: 50%;
+      transform: translate(-50%, -50%);
       display: none;
       animation: glow 1.5s infinite alternate;
     }
 
     @keyframes glow {
-      0% {
-      }
-      100% {   
-      }
+      0% {}
+      100% {}
     }
 
     .profile-grid {
@@ -75,14 +77,6 @@
       object-fit: cover;
     }
 
-    h1 {
-    }
-
-    hr {
-      border: 0;
-      width: 60%;
-    }
-
     .socials {
       display: flex;
       flex-direction: column;
@@ -93,9 +87,6 @@
       display: flex;
       gap: 10px;
       color: white;
-    }
-
-    .social-link:hover {
     }
 
     .social-link img.icon {
@@ -168,7 +159,8 @@
         </a>
       </div>
     </div>
-    <audio id="profile-audio" autoplay loop>
+    <!-- Audio will only play when profile shows -->
+    <audio id="profile-audio">
       <source src="https://files.catbox.moe/22w2hy.mp3" type="audio/mpeg">
     </audio>
   </div>
@@ -184,6 +176,13 @@
       "Logging in...",
       "Login successful.",
     ];
+
+    let i = 0, j = 0;
+    const speed = 25;
+    const terminal = document.getElementById("terminal");
+    const profile = document.getElementById("profile");
+    const videoBg = document.getElementById("video-bg");
+    const profileAudio = document.getElementById("profile-audio");
 
     function typeLine() {
       if (i < lines.length) {
@@ -202,8 +201,10 @@
           terminal.style.display = "none";
           profile.style.display = "flex";
           videoBg.style.display = "block";
-          profileAudio.play().catch(e => console.log("Autoplay blocked"));
           launchSnow();
+          profileAudio.play().catch(err => {
+            console.log("User interaction required to autoplay:", err);
+          });
         }, 1000);
       }
     }
@@ -218,7 +219,12 @@
 
     function launchSnow() {
       setInterval(() => {
+        const snowflake = document.createElement('div');
         snowflake.classList.add('snowflake');
+        snowflake.style.left = Math.random() * window.innerWidth + 'px';
+        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+        snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        snowflake.innerHTML = '❄';
         document.body.appendChild(snowflake);
         setTimeout(() => snowflake.remove(), 7000);
       }, 200);
