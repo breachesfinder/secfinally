@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sec's Domain</title>
   <style>
     body {
@@ -155,8 +156,8 @@
 </head>
 <body>
 
-  <!-- Background video  -->
-  <video id="video-bg" autoplay muted loop>
+  <!-- Background video -->
+  <video id="video-bg" autoplay muted loop playsinline>
     <source src="https://files.catbox.moe/pfarh1.mp4" type="video/mp4">
   </video>
 
@@ -171,7 +172,7 @@
   <div class="profile-container" id="profile">
     <div class="profile-grid">
       <img class="pfp" src="https://files.catbox.moe/xge2b7.jpg" alt="pfp" />
-      <h1>sec</h1>
+      <h1>Sec</h1>
       <p>OSINT/CSINT</p>
       <hr />
       <div class="socials">
@@ -193,7 +194,7 @@
 
   <script>
     const lines = [
-      "root@adduser.sh",
+      "root@adduser.shw",
       "Please state the user you would like to add --> sec",
       "Please set the password for 'sec' --> ********",
       "Shall we create a home directory for 'sec'? --> Yes",
@@ -227,7 +228,6 @@
           terminal.style.display = "none";
           profile.style.display = "flex";
           videoBg.style.display = "block";
-          profileAudio.play();
           launchSnow();
         }, 1000);
       }
@@ -236,6 +236,7 @@
     function startOnInput() {
       document.getElementById("intro").remove();
       terminal.style.display = "block";
+      profileAudio.play().catch(e => console.log("Autoplay blocked")); // safe play
       typeLine();
       document.removeEventListener("keydown", startOnInput);
       document.removeEventListener("click", startOnInput);
