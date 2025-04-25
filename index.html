@@ -24,6 +24,7 @@
     #intro {
       font-size: 22px;
       color: white;
+      display: block;
     }
 
     .cursor {
@@ -107,7 +108,7 @@
 
   <!-- Intro screen -->
   <div id="intro">
-    Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
+    Welcome To Sec's Domain. Click To Continue<span class="cursor">█</span>
   </div>
 
   <!-- Profile -->
@@ -122,21 +123,23 @@
           <img src="https://files.catbox.moe/ym0rei.png" class="icon" alt="Telegram"> @nondoxable
         </a>
         <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">
-           @wpa
+          @wpa
         </a>
       </div>
     </div>
   </div>
 
+  <!-- Background Music -->
   <audio id="bg-music" autoplay loop>
     <source src="https://files.catbox.moe/b3n462.mp3" type="audio/mp3">
   </audio>
 
   <script>
-    document.addEventListener('keydown', function() {
-      // Show profile and start music when any key is pressed
-      document.getElementById('intro').style.display = 'none'; 
-      document.getElementById('profile').style.display = 'block';
+    // Wait for the user to click on the screen to continue
+    document.body.addEventListener('click', function() {
+      document.getElementById('intro').style.display = 'none';  // Hide intro
+      document.getElementById('profile').style.display = 'block';  // Show profile
+      document.getElementById('bg-music').play();  // Start the background music
     });
 
     // Add event listener to the profile picture to toggle socials
