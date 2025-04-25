@@ -101,7 +101,6 @@
       width: 24px;
       height: 24px;
     }
-
   </style>
 </head>
 <body>
@@ -123,7 +122,7 @@
           <img src="https://files.catbox.moe/ym0rei.png" class="icon" alt="Telegram"> @nondoxable
         </a>
         <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">
-          @wpa
+          <img src="https://files.catbox.moe/b1wkcw.png" class="icon" alt="Doxbin"> DOXBIN: wpa
         </a>
       </div>
     </div>
@@ -135,17 +134,18 @@
   </audio>
 
   <script>
-    // Wait for the user to click on the screen to continue
+    // Click anywhere to continue
     document.body.addEventListener('click', function() {
-      document.getElementById('intro').style.display = 'none';  // Hide intro
-      document.getElementById('profile').style.display = 'block';  // Show profile
-      document.getElementById('bg-music').play();  // Start the background music
+      document.getElementById('intro').style.display = 'none';
+      document.getElementById('profile').style.display = 'block';
+      const music = document.getElementById('bg-music');
+      music.play().catch(e => { console.log('Music play blocked by browser'); });
     });
 
-    // Add event listener to the profile picture to toggle socials
+    // Toggle socials on profile pic click
     document.getElementById('profile-pic').addEventListener('click', function() {
       const socials = document.getElementById('socials');
-      socials.style.display = socials.style.display === 'none' || socials.style.display === '' ? 'block' : 'none';
+      socials.style.display = socials.style.display === 'none' || socials.style.display === '' ? 'flex' : 'none';
     });
   </script>
 </body>
