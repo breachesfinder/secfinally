@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sec</title>
+  <!-- Transparent favicon -->
   <link rel="icon" href="https://files.catbox.moe/lbm66a.png" type="image/png">
   <style>
     body {
@@ -180,7 +181,7 @@
           <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="icon" alt="Telegram"> @nondoxable
         </a>
         <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Document_icon.svg/1200px-Document_icon.svg.png" class="icon" alt="Doxbin"> DOXBIN
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Document_icon.svg/1200px-Document_icon.svg.png" class="icon" alt="Doxbin"> DOXBIN: wpa
         </a>
       </div>
     </div>
@@ -226,7 +227,6 @@
           profile.style.display = "flex";
           videoBg.style.display = "block";
           profileAudio.play().catch(e => console.log("Autoplay blocked"));
-          startSnowLoop(); // Start snow only here
         }, 1000);
       }
     }
@@ -237,21 +237,6 @@
       typeLine();
       document.removeEventListener("keydown", startOnInput);
       document.removeEventListener("click", startOnInput);
-    }
-
-    function launchSnowflake() {
-      const snowflake = document.createElement('div');
-      snowflake.classList.add('snowflake');
-      snowflake.style.left = Math.random() * window.innerWidth + 'px';
-      snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-      snowflake.style.animationDuration = (Math.random() * 3 + 3) + 's';
-      snowflake.innerHTML = '❄';
-      document.body.appendChild(snowflake);
-      setTimeout(() => snowflake.remove(), 10000);
-    }
-
-    function startSnowLoop() {
-      setInterval(launchSnowflake, 200); // Only starts after profile appears
     }
 
     document.addEventListener("keydown", startOnInput);
