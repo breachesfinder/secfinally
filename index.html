@@ -3,81 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>sec</title>
+  <title>Sec</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #0f0;
-      font-family: monospace;
-      height: 100vh;
+      background: black;
+      color: white;
+      font-family: 'Arial Black', sans-serif;
+      overflow: hidden;
+    }
+
+    .glow {
+      text-shadow: 0 0 5px white, 0 0 10px white;
+    }
+
+    #intro {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    #main {
+      display: none;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    #sec-name {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #sec-name:hover {
+      transform: scale(1.05);
+    }
+
+    #profile {
+      display: none;
       flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
 
-    .terminal {
-      background-color: #111;
-      padding: 20px;
-      border-radius: 5px;
-      width: 90%;
-      max-width: 600px;
-      box-shadow: 0 0 10px #0f0;
-      text-align: left;
+    .pfp {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 3px solid white;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
-    .terminal p {
-      margin: 5px 0;
+    .pfp:hover {
+      transform: scale(1.05);
     }
 
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      height: 20px;
-      background-color: #0f0;
-      animation: blink 1s infinite;
+    .socials {
+      margin-top: 20px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      50.01%, 100% { opacity: 0; }
-    }
-
-    .name-link {
-      margin-top: 30px;
-      font-size: 18px;
-      color: #0f0;
+    .social-link {
+      color: white;
       text-decoration: none;
-      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .name-link:hover {
-      font-size: 36px;
-      text-shadow: 0 0 10px #0f0;
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 10px white;
     }
   </style>
 </head>
 <body>
 
-  <div class="terminal">
-    <p>build_x64_23.58</p>
-    <p>arch=x86_64 platform=efi secure_boot=enabled kvm=active</p>
-    <p>Loading kernel modules...</p>
-    <p>CPU: AMD Ryzen 9 7950X detected at 5.7 GHz</p>
-    <p>Memory: 64GB DDR5-6000 CL30 initialized</p>
-    <p>Running memory diagnostic...</p>
-    <p>Initializing PCI devices...</p>
-    <p>Loading system drivers: nvidia.ko, audio.ko, net.ko</p>
-    <p>ACPI: Temperature threshold warning (CPU: 75°C)</p>
-    <p>Starting system services [1/3]...</p>
-    <p>SYSTEM READY</p>
-    <p><span class="cursor"></span></p>
+  <!-- Intro -->
+  <div id="intro" class="glow">
+    Press Anywhere To Enter
   </div>
 
- 
-  <a href="https://t.me/nondoxable" target="_blank" class="telegram">sec</a>
+  <!-- Main View -->
+  <div id="main" class="glow">
+    <div id="sec-name">Sec</div>
 
+    <div id="profile">
+      <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" />
+      <div class="socials">
+        <a href="https://t.me/nondoxable" target="_blank" class="social-link">@sec</a>
+        <a href="https://doxbin.net/user/wpa" class="social-link">@sec</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const intro = document.getElementById("intro");
+    const main = document.getElementById("main");
+    const secName = document.getElementById("sec-name");
+    const profile = document.getElementById("profile");
+    const pfp = document.querySelector(".pfp");
+    const socials = document.querySelector(".socials");
+
+    intro.addEventListener("click", () => {
+      intro.style.display = "none";
+      main.style.display = "flex";
+    });
+
+    secName.addEventListener("click", () => {
+      profile.style.display = "flex";
+    });
+
+    pfp.addEventListener("click", () => {
+      socials.style.display = socials.style.display === "flex" ? "none" : "flex";
+    });
+  </script>
 </body>
 </html>
