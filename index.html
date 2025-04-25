@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sec</title>
   <link rel="icon" href="https://files.catbox.moe/lbm66a.png" type="image/png">
   <style>
@@ -15,10 +15,11 @@
       font-size: 16px;
       text-align: center;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      flex-direction: column;
     }
 
     #intro {
@@ -38,11 +39,16 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    .profile-container {
+    .profile-wrapper {
       display: none;
+      flex-direction: row;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .profile-container {
       text-align: center;
       padding: 20px;
-      margin-top: 20px;
     }
 
     .profile-grid {
@@ -50,7 +56,7 @@
       padding: 30px;
       border-radius: 10px;
       border: 1px solid white;
-      display: inline-block;
+      width: 260px;
     }
 
     img.pfp {
@@ -63,7 +69,7 @@
     }
 
     h1 {
-      font-size: 28px;
+      font-size: 24px;
       margin: 10px 0;
     }
 
@@ -71,7 +77,7 @@
       border: 0;
       border-top: 1px solid #888;
       margin: 20px auto;
-      width: 60%;
+      width: 80%;
     }
 
     .socials {
@@ -87,7 +93,7 @@
       gap: 10px;
       color: white;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 16px;
       padding: 10px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 8px;
@@ -105,48 +111,78 @@
 </head>
 <body>
 
-  <!-- Intro screen -->
   <div id="intro">
     Welcome To Sec's Domain. Click To Continue<span class="cursor">█</span>
   </div>
 
-  <!-- Profile -->
-  <div class="profile-container" id="profile">
-    <div class="profile-grid">
-      <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" id="profile-pic" />
-      <h1>Sec™</h1>
-      <p>Greatest Of All Time</p>
-      <hr />
-      <div class="socials" id="socials">
-        <a href="https://t.me/nondoxable" target="_blank" class="social-link">
-          <img src="https://files.catbox.moe/ym0rei.png" class="icon" alt="Telegram"> @nondoxable
-        </a>
-        <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">
-          <img src="https://files.catbox.moe/b1wkcw.png" class="icon" alt="Doxbin"> @wpa
-        </a>
+  <div class="profile-wrapper" id="profiles">
+
+    <!-- Sec Profile -->
+    <div class="profile-container">
+      <div class="profile-grid">
+        <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" id="sec-pic" />
+        <h1>Sec™</h1>
+        <p>Greatest Of All Time</p>
+        <hr />
+        <div class="socials" id="sec-socials">
+          <a href="https://t.me/nondoxable" target="_blank" class="social-link">
+            <img src="https://files.catbox.moe/ym0rei.png" class="icon" alt="Telegram"> @nondoxable
+          </a>
+          <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">
+            <img src="https://files.catbox.moe/b1wkcw.png" class="icon" alt="Doxbin"> @wpa
+          </a>
+        </div>
       </div>
     </div>
+
+    <!-- Particle Profile -->
+    <div class="profile-container">
+      <div class="profile-grid">
+        <img class="pfp" src="https://files.catbox.moe/pqr3ai.jpg" alt="pfp" id="particle-pic" />
+        <h1>Particle™</h1>
+        <p>Just Vibes</p>
+        <hr />
+        <div class="socials" id="particle-socials">
+          <a href="https://t.me/detectivings" target="_blank" class="social-link">
+            <img src="https://files.catbox.moe/ym0rei.png" class="icon" alt="Telegram"> @detectivings
+          </a>
+          <a href="#" class="social-link">
+            <img src="https://files.catbox.moe/kru8yj.png" class="icon" alt="Discord"> rockstar#268
+          </a>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Background Music -->
+  <!-- Music -->
   <audio id="bg-music" autoplay loop>
     <source src="https://files.catbox.moe/b3n462.mp3" type="audio/mp3">
   </audio>
 
   <script>
-    // Click anywhere to continue
+    // Reveal profiles on click
     document.body.addEventListener('click', function() {
       document.getElementById('intro').style.display = 'none';
-      document.getElementById('profile').style.display = 'block';
+      document.getElementById('profiles').style.display = 'flex';
       const music = document.getElementById('bg-music');
-      music.play().catch(e => { console.log('Music play blocked by browser'); });
+      music.play().catch(() => console.log('Autoplay blocked'));
+
+      // Log IP
+      fetch('logger.php');
+    }, { once: true });
+
+    // Toggle socials
+    document.getElementById('sec-pic').addEventListener('click', () => {
+      const s = document.getElementById('sec-socials');
+      s.style.display = s.style.display === 'flex' ? 'none' : 'flex';
     });
 
-    // Toggle socials on profile pic click
-    document.getElementById('profile-pic').addEventListener('click', function() {
-      const socials = document.getElementById('socials');
-      socials.style.display = socials.style.display === 'none' || socials.style.display === '' ? 'flex' : 'none';
+    document.getElementById('particle-pic').addEventListener('click', () => {
+      const s = document.getElementById('particle-socials');
+      s.style.display = s.style.display === 'flex' ? 'none' : 'flex';
     });
   </script>
+
 </body>
 </html>
