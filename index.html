@@ -92,11 +92,10 @@
   <!-- Main profile area -->
   <div id="main" class="glow">
     <div id="sec-name">Sec</div>
-    <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" />
+    <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" onclick="toggleSocials()" />
     <div class="socials" id="socials">
-      <a href="https://t.me/unloggable" target="_blank" class="social-link">@unloggable</a>
-      <a href="https://discord.gg/Swf6DK9d" target="_blank" class="social-link">Discord Server</a>
-      <a href="mailto:sec@govshield.cc" class="social-link">sec@govshield.cc</a>
+      <a href="https://t.me/nondoxable" target="_blank" class="social-link">Telegram: @nondoxable</a>
+      <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">Doxbin Profile</a>
     </div>
   </div>
 
@@ -113,11 +112,14 @@
     function startExperience() {
       intro.style.display = "none";
       music.play().catch(err => console.log("Autoplay blocked"));
-      socials.style.display = "flex";
     }
 
-    document.addEventListener("keydown", startExperience);
-    document.addEventListener("click", startExperience);
+    function toggleSocials() {
+      socials.style.display = socials.style.display === "flex" ? "none" : "flex";
+    }
+
+    document.addEventListener("keydown", startExperience, { once: true });
+    document.addEventListener("click", startExperience, { once: true });
   </script>
 
 </body>
