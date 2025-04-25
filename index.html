@@ -13,7 +13,6 @@
       color: white;
       font-family: 'Arial Black', sans-serif;
       font-size: 16px;
-      overflow: hidden;
       text-align: center;
     }
 
@@ -37,65 +36,27 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    #terminal {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: left;
-      font-family: 'Courier New', monospace;
-      white-space: pre-wrap;
-      color: white;
-      background-color: black;
-      padding: 30px;
-      border: 1px solid white;
-      width: 500px;
-      display: none;
-    }
-
-    #video-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -1;
-      display: none;
-    }
-
     .profile-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       display: none;
-      animation: glow 1.5s infinite alternate;
-    }
-
-    @keyframes glow {
-      0% {
-        text-shadow: 0 0 10px white, 0 0 20px white;
-      }
-      100% {
-        text-shadow: 0 0 20px white, 0 0 40px white;
-      }
+      padding: 20px;
+      margin-top: 20px;
     }
 
     .profile-grid {
       background: rgba(0, 0, 0, 0.6);
-      border: 2px solid white;
       padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px white;
+      border-radius: 10px;
+      border: 1px solid white;
+      display: inline-block;
     }
 
     img.pfp {
       width: 160px;
       height: 160px;
       object-fit: cover;
+      border-radius: 5px;
       margin-bottom: 20px;
-      border: 2px solid white;
+      cursor: pointer;
     }
 
     h1 {
@@ -112,7 +73,7 @@
 
     .socials {
       margin-top: 20px;
-      display: flex;
+      display: none;
       flex-direction: column;
       gap: 10px;
     }
@@ -121,86 +82,58 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 10px 15px;
-      border-radius: 8px;
-      text-decoration: none;
       color: white;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
     }
 
     .social-link:hover {
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 10px white;
+      background: rgba(255, 255, 255, 0.2);
     }
 
-    .social-link img.icon {
-      width: 24px;
-      height: 24px;
-    }
-
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      z-index: 1000;
-      color: white;
-      font-size: 1em;
-      animation: fall linear infinite;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(100vh); }
-    }
   </style>
 </head>
 <body>
-
-  <!-- Background video -->
-  <video id="video-bg" autoplay muted loop playsinline>
-    <source src="https://files.catbox.moe/pfarh1.mp4" type="video/mp4">
-  </video>
 
   <!-- Intro screen -->
   <div id="intro">
     Welcome To Sec's Domain. Press Any Key To Continue<span class="cursor">█</span>
   </div>
 
-  <div id="terminal"></div>
-
   <!-- Profile -->
   <div class="profile-container" id="profile">
     <div class="profile-grid">
-      <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" />
+      <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" onclick="toggleSocials()" />
       <h1>Sec™</h1>
       <p>Greatest Of All Time</p>
       <hr />
-      <div class="socials">
+      <div class="socials" id="socials">
         <a href="https://t.me/nondoxable" target="_blank" class="social-link">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="icon" alt="Telegram"> @nondoxable
+          Telegram: @nondoxable
         </a>
-        <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">DOXBIN: wpa</a>
+        <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">
+          DOXBIN: wpa
+        </a>
       </div>
     </div>
   </div>
 
-  <audio id="background-audio">
-    <source src="https://files.catbox.moe/b3n462.mp3" type="audio/mp3">
-  </audio>
-
   <script>
-    const introElement = document.getElementById("intro");
-    const profileContainer = document.getElementById("profile");
-    const videoBg = document.getElementById("video-bg");
-    const backgroundAudio = document.getElementById("background-audio");
-
-    // Wait for a key press to start the sequence
-    document.addEventListener("keydown", function () {
-      introElement.style.display = "none"; // Hide the intro
-      videoBg.style.display = "block"; // Show the background video
-      profileContainer.style.display = "block"; // Show the profile container
-      backgroundAudio.play(); // Play the song
+    // Show profile after any key is pressed
+    document.addEventListener("keydown", () => {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("profile").style.display = "block";
     });
+
+    // Function to toggle the social links
+    function toggleSocials() {
+      const socials = document.getElementById("socials");
+      socials.style.display = socials.style.display === "none" || socials.style.display === "" ? "flex" : "none";
+    }
   </script>
+
 </body>
 </html>
