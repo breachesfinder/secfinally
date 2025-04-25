@@ -14,13 +14,14 @@
       font-family: 'Arial Black', sans-serif;
       font-size: 16px;
       text-align: center;
-    }
-
-    #intro {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
+    }
+
+    #intro {
       font-size: 22px;
       color: white;
     }
@@ -38,6 +39,7 @@
 
     .profile-container {
       display: none;
+      text-align: center;
       padding: 20px;
       margin-top: 20px;
     }
@@ -121,11 +123,18 @@
     </div>
   </div>
 
+  <!-- Background audio (hidden initially) -->
+  <audio id="background-music" src="https://files.catbox.moe/b3n462.mp3" preload="auto"></audio>
+
   <script>
-    // Show profile after any key is pressed
+    // Show profile and play music after any key is pressed
     document.addEventListener("keydown", () => {
       document.getElementById("intro").style.display = "none";
       document.getElementById("profile").style.display = "block";
+      
+      // Play the song
+      const audio = document.getElementById("background-music");
+      audio.play();
     });
 
     // Function to toggle the social links
