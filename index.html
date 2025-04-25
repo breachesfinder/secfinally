@@ -96,6 +96,11 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
+    .social-link img.icon {
+      width: 24px;
+      height: 24px;
+    }
+
   </style>
 </head>
 <body>
@@ -108,13 +113,13 @@
   <!-- Profile -->
   <div class="profile-container" id="profile">
     <div class="profile-grid">
-      <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" onclick="toggleSocials()" />
+      <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" id="profile-pic" />
       <h1>Sec™</h1>
       <p>Greatest Of All Time</p>
       <hr />
       <div class="socials" id="socials">
         <a href="https://t.me/nondoxable" target="_blank" class="social-link">
-          Telegram: @nondoxable
+          <img src="https://files.catbox.moe/ym0rei.png" class="icon" alt="Telegram"> @nondoxable
         </a>
         <a href="https://doxbin.net/user/wpa" target="_blank" class="social-link">
           DOXBIN: wpa
@@ -123,26 +128,22 @@
     </div>
   </div>
 
-  <!-- Background audio (hidden initially) -->
-  <audio id="background-music" src="https://files.catbox.moe/b3n462.mp3" preload="auto"></audio>
+  <audio id="bg-music" autoplay loop>
+    <source src="https://files.catbox.moe/b3n462.mp3" type="audio/mp3">
+  </audio>
 
   <script>
-    // Show profile and play music after any key is pressed
-    document.addEventListener("keydown", () => {
-      document.getElementById("intro").style.display = "none";
-      document.getElementById("profile").style.display = "block";
-      
-      // Play the song
-      const audio = document.getElementById("background-music");
-      audio.play();
+    document.addEventListener('keydown', function() {
+      // Show profile and start music when any key is pressed
+      document.getElementById('intro').style.display = 'none'; 
+      document.getElementById('profile').style.display = 'block';
     });
 
-    // Function to toggle the social links
-    function toggleSocials() {
-      const socials = document.getElementById("socials");
-      socials.style.display = socials.style.display === "none" || socials.style.display === "" ? "flex" : "none";
-    }
+    // Add event listener to the profile picture to toggle socials
+    document.getElementById('profile-pic').addEventListener('click', function() {
+      const socials = document.getElementById('socials');
+      socials.style.display = socials.style.display === 'none' || socials.style.display === '' ? 'block' : 'none';
+    });
   </script>
-
 </body>
 </html>
