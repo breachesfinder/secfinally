@@ -194,11 +194,12 @@
     const videoBg = document.getElementById("video-bg");
     const backgroundAudio = document.getElementById("background-audio");
 
+    // Wait for a key press to start the sequence
     document.addEventListener("keydown", function () {
-      introElement.style.display = "none";
-      videoBg.style.display = "block";
-      profileContainer.style.display = "block";
-      backgroundAudio.play();
+      introElement.style.display = "none"; // Hide the intro
+      videoBg.style.display = "block"; // Show the background video
+      profileContainer.style.display = "block"; // Show the profile container
+      backgroundAudio.play(); // Play the song
     });
   </script>
 </body>
