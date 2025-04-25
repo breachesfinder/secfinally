@@ -18,48 +18,42 @@
     }
 
     #intro {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: black;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       font-size: 24px;
       cursor: pointer;
+      z-index: 10;
     }
 
     #main {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
     }
 
     #sec-name {
       font-size: 3rem;
       margin-bottom: 20px;
-      cursor: pointer;
       transition: transform 0.3s ease;
-    }
-
-    #sec-name:hover {
-      transform: scale(1.05);
-    }
-
-    #profile {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
     }
 
     .pfp {
       width: 160px;
       height: 160px;
-      border-radius: 50%;
       border: 3px solid white;
       cursor: pointer;
       transition: transform 0.3s ease;
+      object-fit: cover;
     }
 
     .pfp:hover {
@@ -90,44 +84,41 @@
 </head>
 <body>
 
-  <!-- Intro -->
+  <!-- Intro screen -->
   <div id="intro" class="glow">
-    Press Anywhere To Enter
+    Press Any Key
   </div>
 
-  <!-- Main View -->
+  <!-- Main profile area -->
   <div id="main" class="glow">
     <div id="sec-name">Sec</div>
-
-    <div id="profile">
-      <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" />
-      <div class="socials">
-        <a href="https://t.me/nondoxable" target="_blank" class="social-link">@sec</a>
-        <a href="https://doxbin.net/user/wpa" class="social-link">@sec</a>
-      </div>
+    <img class="pfp" src="https://files.catbox.moe/by2dln.jpg" alt="pfp" />
+    <div class="socials" id="socials">
+      <a href="https://t.me/unloggable" target="_blank" class="social-link">@unloggable</a>
+      <a href="https://discord.gg/Swf6DK9d" target="_blank" class="social-link">Discord Server</a>
+      <a href="mailto:sec@govshield.cc" class="social-link">sec@govshield.cc</a>
     </div>
   </div>
 
+  <!-- Background audio -->
+  <audio id="music" loop>
+    <source src="https://files.catbox.moe/6oq8gi.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
     const intro = document.getElementById("intro");
-    const main = document.getElementById("main");
-    const secName = document.getElementById("sec-name");
-    const profile = document.getElementById("profile");
-    const pfp = document.querySelector(".pfp");
-    const socials = document.querySelector(".socials");
+    const music = document.getElementById("music");
+    const socials = document.getElementById("socials");
 
-    intro.addEventListener("click", () => {
+    function startExperience() {
       intro.style.display = "none";
-      main.style.display = "flex";
-    });
+      music.play().catch(err => console.log("Autoplay blocked"));
+      socials.style.display = "flex";
+    }
 
-    secName.addEventListener("click", () => {
-      profile.style.display = "flex";
-    });
-
-    pfp.addEventListener("click", () => {
-      socials.style.display = socials.style.display === "flex" ? "none" : "flex";
-    });
+    document.addEventListener("keydown", startExperience);
+    document.addEventListener("click", startExperience);
   </script>
+
 </body>
 </html>
